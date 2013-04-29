@@ -681,7 +681,7 @@ This plugin is the non-commercial version of the Spider Facebook. Use of this pl
 The commercial version of Spider Facebook is also include integration of your WordPress web site with Google Plus, LinkedIn, Twitter.
  </p>
 <br /><br />
-<a href="http://web-dorado.com/wordpress-facebook.html" class="button-primary" target="_blank">Purchase a License</a>
+<a href="http://web-dorado.com/products/wordpress-facebook.html" class="button-primary" target="_blank">Purchase a License</a>
 <br /><br /><br />
 <p>After the purchasing the commercial version follow this steps:</p>
 <ol>
