@@ -2,7 +2,7 @@
 /*
 Plugin Name: Spider Facebook
 Plugin URI: http://web-dorado.com/
-Version: 1.0
+Version: 1.0.1
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -136,7 +136,7 @@ function spider_facebook_front_end_short($content){
 	global $post;
 	////////////////////regiister page
 	//if(isset($_GET['task']) && isset($_GET['type']) && isset($_GET['appid']) && isset($_GET['g_red']) && ($_GET['task']=='registered' || $_GET['task']=='registration'))
-	if(isset($_GET['task']) &&  (isset($_GET['fbid']) || isset($_GET['g_red']) ||  isset($_GET['res'])) && ($_GET['task']=='login' || $_GET['task']=='registered' || $_GET['task']=='registration' || $_GET['task']=='loginwith'))
+	if(isset($_GET['task']) &&  (isset($_GET['fbid']) || isset($_GET['g_red']) ||  isset($_GET['res']) || isset($_GET['logout_red'])) && ($_GET['task']=='login' || $_GET['task']=='registered' || $_GET['task']=='registration' || $_GET['task']=='loginwith' || $_GET['task']=='logout'))
 	{		
 		$task=$_GET['task'];
 		$type=$_GET['type'];
@@ -163,10 +163,8 @@ function spider_facebook_front_end_short($content){
 		switch($task){
 		
 		case 'logout':
-		global $mainframe;
-		
 		wp_logout();
-		
+		 wp_redirect(get_permalink());
 		return '';
 		
 		break;
@@ -307,7 +305,7 @@ function spider_facebook_front_end_short($content){
  		$userdata=array(
 		 'user_login' => $data['username'],
 		 'user_pass' => $data['password'],
-		 'user_email' => $data['email'].'lggl',
+		 'user_email' => $data['email'],
 		 'nickname' => $data['first_name'].$data['last_name'],
 		 'first_name' => $data['first_name'],
 		 'last_name' => $data['last_name'],
@@ -371,7 +369,7 @@ function spider_facebook_front_end_short($content){
 		 $userdata=array(
 		 'user_login' => $data['username'],
 		 'user_pass' => $data['password'],
-		 'user_email' => $data['email'].'lggl',
+		 'user_email' => $data['email'],
 		 'nickname' => $data['first_name'].$data['last_name'],
 		 'first_name' => $data['first_name'],
 		 'last_name' => $data['last_name'],
@@ -444,6 +442,7 @@ function spider_facebook_front_end_short($content){
 	if(is_page())
 		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (items LIKE '%***".$post->ID."***%' OR items='all') AND `published`=1 ";
 	$params=$wpdb->get_results($query);
+	$login_id=wp_generate_password(10);
 	foreach($params as $param){
 	$reglog=get_permalink();
 	if(is_user_logged_in() && $param->type=='register'){
@@ -492,7 +491,7 @@ function spider_facebook_front_end_short($content){
 	$param->code=str_replace('get_registration_for_faceebok_page_or_post',$url_conect_with,$param->code);
 	
 	$param->code=str_replace('autoLANGauto',$lang,$param->code);
-	$login_id=wp_generate_password(10);
+	
 	$param->code=str_replace('temp_id',$login_id,$param->code);
 	if(is_page())
 		$swich_my=$param->item_place;
@@ -681,7 +680,7 @@ This plugin is the non-commercial version of the Spider Facebook. Use of this pl
 The commercial version of Spider Facebook is also include integration of your WordPress web site with Google Plus, LinkedIn, Twitter.
  </p>
 <br /><br />
-<a href="http://web-dorado.com/products/wordpress-facebook.html" class="button-primary" target="_blank">Purchase a License</a>
+<a href=" http://web-dorado.com/products/wordpress-facebook.html" class="button-primary" target="_blank">Purchase a License</a>
 <br /><br /><br />
 <p>After the purchasing the commercial version follow this steps:</p>
 <ol>

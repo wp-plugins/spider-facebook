@@ -51,7 +51,7 @@ function spider_facebook_front_meta() {
 			$matches_spider_face[1][0];
 			$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE id=".$matches_spider_face[1][0]."";
 			$par=$wpdb->get_row($query);
-			if(!($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment' || $par->type=='socials'))
+			if(!($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment'))
 			{
 				return;
 			}
@@ -105,9 +105,10 @@ function spider_facebook_front_meta() {
 		for($i=0, $n=count($param); $i < $n ; $i++){
 			$par = $param[$i];			
 			if($par->published!=0){			
-				if(($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment' || $par->type=='socials') && $par->articles!='all'){
+				if(($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment') && $par->articles!='all'){
 					if(($value_title && $value_type && $value_url && ($value_image || $facebook_featured_image) && $value_site_name && $value_description && $value_admin_id) || ($value_title && $value_type && $value_url && ($value_image || $facebook_featured_image) && $value_site_name && $value_description)){
-					 	 echo '<meta property="og:title"     	content="'.htmlspecialchars($value_title).'"/>';	
+					 	 echo '<meta property="og:title"     	content="'.htmlspecialchars($value_title).'"/>';
+						 if($value_type!='Chose a type')	
 						 echo '<meta property="og:type"     	content="'.htmlspecialchars($value_type).'"/>';
 						 echo '<meta property="og:url"     	content="'.htmlspecialchars($value_url).'"/>';
 						 
@@ -190,7 +191,7 @@ function spider_facebook_front_meta() {
 						 else
 						 	echo $tag_title;
 							
-						 if($value_type) 	
+						 if($value_type!='Chose a type') 	
 						 	echo '<meta property="og:type"     	content="'.htmlspecialchars($value_type).'"/>';
 						 else
 						  	echo $tag_type;
@@ -332,9 +333,10 @@ function spider_facebook_front_meta() {
 		for($i=0, $n=count($param); $i < $n ; $i++){
 			$par = $param[$i];			
 			if($par->published!=0){			
-				if(($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment' || $par->type=='socials') && $par->items!='all'){
+				if(($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment') && $par->items!='all'){
 					if(($value_title && $value_type && $value_url && ($value_image || $facebook_featured_image) && $value_site_name && $value_description && $value_admin_id) || ($value_title && $value_type && $value_url && ($value_image || $facebook_featured_image) && $value_site_name && $value_description)){
 					 	 echo '<meta property="og:title"     	content="'.htmlspecialchars($value_title).'"/>';	
+						 if($value_type!='Chose a type')
 						 echo '<meta property="og:type"     	content="'.htmlspecialchars($value_type).'"/>';
 						 echo '<meta property="og:url"     	content="'.htmlspecialchars($value_url).'"/>';
 						 
@@ -417,7 +419,7 @@ function spider_facebook_front_meta() {
 						 else
 						 	echo $tag_title;
 							
-						 if($value_type) 	
+						 if($value_type!='Chose a type') 	
 						 	echo '<meta property="og:type"     	content="'.htmlspecialchars($value_type).'"/>';
 						 else
 						  	echo $tag_type;

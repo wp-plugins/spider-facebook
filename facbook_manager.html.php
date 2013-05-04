@@ -52,7 +52,7 @@ var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.
     <input type="button" style="float:left; position:relative; top:10px; margin-left:20px" class="button-secondary action" value="Add a Facebook" name="custom_parametrs" onclick="<?php if(count($rows)) {?>alert(' This is the free version of the plugin You can use only one type of Facebook social plugins. If you want to remove the limitation, you are required to purchase a license.')<?php }else{?>window.location.href='admin.php?page=Spider_Facebook_manage&task=add'<?php }?>" />
     </td>
     <td colspan="11"><div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
-		<a href="http://web-dorado.com/products/wordpress-facebook.html" target="_blank" style="color:red; text-decoration:none;">
+		<a href=" http://web-dorado.com/products/wordpress-facebook.html " target="_blank" style="color:red; text-decoration:none;">
 		<img src="<?php echo plugins_url( 'images/header.png' , __FILE__ ); ?>" border="0" alt="www.web-dorado.com" width="215"><br>
 		Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
 		</a>
@@ -3146,7 +3146,7 @@ jQuery(function() {
     
     <tr>  
     <td colspan="11"><div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
-		<a href="http://web-dorado.com/products/wordpress-facebook.html" target="_blank" style="color:red; text-decoration:none;">
+		<a href=" http://web-dorado.com/products/wordpress-facebook.html" target="_blank" style="color:red; text-decoration:none;">
 		<img src="<?php echo plugins_url( 'images/header.png' , __FILE__ ); ?>" border="0" alt="www.web-dorado.com" width="215"><br>
 		Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
 		</a>
