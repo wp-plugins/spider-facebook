@@ -103,7 +103,7 @@ After downloading the ZIP file
 Once the plugin is activated, you'll notice a menu on the left called "Facebook".  
 If any problem occurs with [Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.  
 
-== Screenshots of the Spider Facebook ==
+== Screenshots ==
 1.  Spider Facebook - Social networks	 
 2.  Spider Facebook - All social buttons	
 3.  Spider Facebook - Add a Facebook 	
