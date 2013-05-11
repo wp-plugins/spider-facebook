@@ -2,7 +2,7 @@
 /*
 Plugin Name: Spider Facebook
 Plugin URI: http://web-dorado.com/
-Version: 1.0.1
+Version: 1.0.2
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -443,6 +443,8 @@ function spider_facebook_front_end_short($content){
 		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (items LIKE '%***".$post->ID."***%' OR items='all') AND `published`=1 ";
 	$params=$wpdb->get_results($query);
 	$login_id=wp_generate_password(10);
+	if(!count($params))
+	return $content;
 	foreach($params as $param){
 	$reglog=get_permalink();
 	if(is_user_logged_in() && $param->type=='register'){
