@@ -44,14 +44,14 @@ var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.
 }
 	</script>
     <form method="post" action="admin.php?page=Spider_Facebook_manage" onkeypress="doNothing()" id="admin_form" name="admin_form" >
-		<table cellspacing="10" width="100%">
+	<table cellspacing="10" width="100%">
     <tr><td><a href="http://web-dorado.com/wordpress-facebook-guide-step-1.html" target="_blank" style="color:blue; text-decoration:none;font-size:16px; font-weight:bold">User Manual</a></td></tr>
     <tr>
-    <td style="width:310px">
+    <td style="width:210px">
     <?php echo "<h2 style=\"float:left\">".'Spider Facebook'. "</h2>"; ?>
-    <input type="button" style="float:left; position:relative; top:10px; margin-left:20px" class="button-secondary action" value="Add a Facebook" name="custom_parametrs" onclick="<?php if(count($rows)) {?>alert(' This is the free version of the plugin You can use only one type of Facebook social plugins. If you want to remove the limitation, you are required to purchase a license.')<?php }else{?>window.location.href='admin.php?page=Spider_Facebook_manage&task=add'<?php }?>" />
+    <input type="button" style="float:left; position:relative; top:10px; margin-left:20px" class="button-secondary action" value="Add a Facebook" name="custom_parametrs" onclick="window.location.href='admin.php?page=Spider_Facebook_manage&task=add'" />
     </td>
-    <td colspan="11"><div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
+     <td colspan="11"><div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
 		<a href=" http://web-dorado.com/products/wordpress-facebook.html " target="_blank" style="color:red; text-decoration:none;">
 		<img src="<?php echo plugins_url( 'images/header.png' , __FILE__ ); ?>" border="0" alt="www.web-dorado.com" width="215"><br>
 		Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1314,12 +1314,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -1539,12 +1536,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='';
 			document.getElementById('comment_prev').style.display='none';
@@ -1659,12 +1653,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -1865,12 +1856,9 @@ document.getElementById('comment_hover').style.display='';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='';
@@ -1978,12 +1966,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2088,12 +2073,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2200,12 +2182,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2403,12 +2382,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2507,12 +2483,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2703,12 +2676,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2799,12 +2769,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='';
-document.getElementById('register_hover').style.display='none';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2892,12 +2859,9 @@ document.getElementById('comment_hover').style.display='none';
 document.getElementById('actfeed_hover').style.display='none';
 document.getElementById('recommendation_hover').style.display='none';
 document.getElementById('likebox_hover').style.display='none';
-document.getElementById('loginbutton_hover').style.display='none';
 document.getElementById('facepile_hover').style.display='none';
 document.getElementById('share_hover').style.display='none';
 document.getElementById('request_hover').style.display='none';
-document.getElementById('register_hover').style.display='';
-
             document.getElementById('likebutton_prev').style.display='none';
 			document.getElementById('sendbutton_prev').style.display='none';
 			document.getElementById('comment_prev').style.display='none';
@@ -2967,7 +2931,111 @@ document.getElementById('register_hover').style.display='';
 				    break;
 					
 					
-
+case 'socials':	
+document.getElementById('likebutton').style.display='';
+document.getElementById('sendbutton').style.display='';
+document.getElementById('follow').style.display='';
+document.getElementById('comment').style.display='';
+document.getElementById('actfeed').style.display='';
+document.getElementById('recommendation').style.display='';
+document.getElementById('likebox').style.display='';
+document.getElementById('loginbutton').style.display='';
+document.getElementById('facepile').style.display='';
+document.getElementById('share').style.display='';
+document.getElementById('request').style.display='';
+document.getElementById('register').style.display='';
+document.getElementById('socials').style.display='none';
+document.getElementById('likebutton_hover').style.display='none';
+document.getElementById('sendbutton_hover').style.display='none';
+document.getElementById('follow_hover').style.display='none';
+document.getElementById('comment_hover').style.display='none';
+document.getElementById('actfeed_hover').style.display='none';
+document.getElementById('recommendation_hover').style.display='none';
+document.getElementById('likebox_hover').style.display='none';
+document.getElementById('facepile_hover').style.display='none';
+document.getElementById('share_hover').style.display='none';
+document.getElementById('request_hover').style.display='none';
+            document.getElementById('likebutton_prev').style.display='none';
+			document.getElementById('sendbutton_prev').style.display='none';
+			document.getElementById('comment_prev').style.display='none';
+			document.getElementById('like_box_prev').style.display='none';
+			document.getElementById('follow_prev').style.display='none';
+			document.getElementById('request_prev').style.display='none';
+			document.getElementById('recommendation_prev').style.display='none';
+			document.getElementById('activity_feed_prev').style.display='none';
+			document.getElementById('facepile_prev').style.display='none';
+			document.getElementById('share_prev').style.display='none';
+			document.getElementById('login_prev').style.display='none';
+			document.getElementById('register_prev').style.display='none';
+			document.getElementById('social_prev').style.display='';
+			
+			
+			document.getElementById('domain').style.display='none';
+			document.getElementById('appid').style.display='';
+			document.getElementById('url_type').style.display='';
+			if(document.getElementById('url_change').value=='normal'){
+			document.getElementById('url_tr').style.display='';
+			}
+			else
+			{document.getElementById('url_tr').style.display='none';
+			}
+			
+			document.getElementById('render_tr').style.display='none';
+			document.getElementById('r3').style.display='none';
+			document.getElementById('r4').style.display='none';
+			document.getElementById('width').style.display='none';
+			document.getElementById('height').style.display='none';
+			document.getElementById('target').style.display='none';
+			document.getElementById('rows').style.display='none';
+			document.getElementById('size').style.display='none';
+			document.getElementById('post').style.display='none';
+			document.getElementById('head').style.display='none';
+			document.getElementById('stream').style.display='none';
+			document.getElementById('recom').style.display='none';
+			document.getElementById('action').style.display='none';
+			document.getElementById('send').style.display='none';
+			document.getElementById('face').style.display='none';
+			document.getElementById('layout').style.display='none';
+			document.getElementById('backg').style.display='none';
+			document.getElementById('border').style.display='none';	
+			document.getElementById('colorsc').style.display='none';
+			document.getElementById('font').style.display='none';
+			document.getElementById('lang_type').style.display='';
+			if(document.getElementById('lang_change').value=='normal'){
+			document.getElementById('lang').style.display='';
+			}
+			else
+			{document.getElementById('lang').style.display='none';
+			}
+			
+			document.getElementById('bord').style.display='none';
+				
+			document.getElementById('share_type').style.display='none';
+		    document.getElementById('request_type').style.display='none';
+			document.getElementById('twit').style.display='none';
+			document.getElementById('art_table_meta').style.display='';
+			document.getElementById('art_table').style.display='none';
+			document.getElementById('item_table_meta').style.display='';
+			document.getElementById('item_table').style.display='none';
+			if(!document.getElementById('all_arts').checked)
+			document.getElementById('def_img_art_tr').style.display='';
+			if(!document.getElementById('all_items').checked)
+			document.getElementById('def_img_item_tr').style.display='';
+			document.getElementById('reg_red').style.display='none';
+			document.getElementById('log_red').style.display='none';
+			document.getElementById('reg_type').style.display='none';
+			document.getElementById('fb_only').style.display='none';
+			document.getElementById('url_value').style.display='none';
+			document.getElementById('req_m').style.display='none';
+			document.getElementById('css').style.display='';
+			
+			document.getElementById('count_tr').style.display='';
+			document.getElementById('hor_place').style.display='';
+			
+			
+			
+			document.getElementById('notification').innerHTML='A set of social widgets for LinkedIn, Twitter, Google, and Facebook.';
+		break;
 			
 						
 					
@@ -3142,16 +3210,16 @@ jQuery(function() {
 	});
 });
 </script>
-<table width="100%">
-    
-    <tr>  
+<table width="90%">
+    <tbody>
+	<tr>  
     <td colspan="11"><div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
 		<a href=" http://web-dorado.com/products/wordpress-facebook.html" target="_blank" style="color:red; text-decoration:none;">
 		<img src="<?php echo plugins_url( 'images/header.png' , __FILE__ ); ?>" border="0" alt="www.web-dorado.com" width="215"><br>
 		Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
 		</a>
 	</td></tr>
-    <tbody><tr>
+	<tr>
   <td width="100%"><h2><?php if($edit_or_add) echo "Edit Facebook - ".htmlspecialchars($row->title); else echo "Adding New Facebook" ?></h2></td>
   <td align="right"><input type="button" onclick="submitbutton('Save')" value="Save" class="button-secondary action"> </td>  
   <td align="right"><input type="button" onclick="submitbutton('Apply')" value="Apply" class="button-secondary action"> </td> 
@@ -3209,20 +3277,16 @@ jQuery(function() {
 		  <img id="share_hover" src="<?php echo $spider_video_player_url; ?>/images/share_hover.png" />
           </span>
   
-     <span class="type_span" onclick="change_type('loginbutton')" >
+     <span class="type_span" onclick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')"  >
 	      <img id="loginbutton" src="<?php echo $spider_video_player_url; ?>/images/login_button.png" />
-		  <img id="loginbutton_hover" src="<?php echo $spider_video_player_url; ?>/images/login_button_hover.png" />
           </span>
 		  
-     <span class="type_span" onclick="change_type('register')">
+     <span class="type_span" onclick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')" >
 	      <img id="register" src="<?php echo $spider_video_player_url; ?>/images/register.png" />
-		  <img id="register_hover" src="<?php echo $spider_video_player_url; ?>/images/register_hover.png" />
           </span>
 		  
-	<span class="type_span" onclick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')
-" >
+	<span class="type_span" onclick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')"  >
 	       <img id="socials" src="<?php echo $spider_video_player_url; ?>/images/socials.png" />
-		   
             </span>  
  
 </div>
@@ -3359,7 +3423,7 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-                                    <input type="text" name="req_m" id="req_m_input"   size="40" value="<?php echo $row->req_m; ?>"/><span id="request_massage_spange_bob" style="color:#F00">*Is required.</span>
+                                    <input type="text" name="req_m"  size="40" value="<?php echo $row->req_m; ?>"/>
 					</td>
                </tr>		   
 			   
@@ -3371,8 +3435,8 @@ jQuery(function() {
 							 Redirect URL after registration: <span style="cursor:pointer;color:#3B5998"  class="hasTip" title="Specify the URL to which the user is redirected after registration">[?]</span>
 						</label>
 					</td>
-					<td style="width:100%">
-                                    <input type="text" name="reg_red"  size="40" value="<?php echo $row->reg_red; ?>"/>
+							<td style="width:100%">
+                                    <input type="text" name="req_m" id="req_m_input"   size="40" value="<?php echo $row->req_m; ?>"/><span id="request_massage_spange_bob" style="color:#F00">*Is required.</span>
 					</td>
                </tr>	
      <tr  id="log_red">

@@ -942,13 +942,7 @@ class seve_or_update_sp{
 	global $wpdb;
 	if(isset($this->genereted_conect_array['id']))
 	$this->genereted_conect_array['id']=NULL;
-	$askkk=$wpdb->get_results('SELECT * FROM '.$wpdb->prefix.$this->table_name);
-	if(!count($askkk))
 	$save_or_no=$wpdb->insert($wpdb->prefix.$this->table_name,$this->genereted_conect_array);
-	else
-	echo '<div id="message" class="updated fade"><p>This is the free version of the plugin You can use only one type of Facebook social plugins. If you want to remove the limitation, you are required to purchase a license.</p></div>';
-	return;
-	
 	if($save_or_no)
 	{
 		echo '<div id="message" class="updated fade"><p>Successfully Saved</p></div>';

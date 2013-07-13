@@ -2,7 +2,7 @@
 /*
 Plugin Name: Spider Facebook
 Plugin URI: http://web-dorado.com/
-Version: 1.0.2
+Version: 1.0.3
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -13,12 +13,6 @@ function spider_facebook_lang() {
 	 load_plugin_textdomain('sp_facebook', false, basename( dirname( __FILE__ ) ) . '/Languages' );
 	
 }
-//////shortcode for facebook
-add_action('init', 'spider_facebook_output_buffer');
-function spider_facebook_output_buffer() {
-        ob_start();
-}
-
 add_action('wp_head','spider_facebook_ifr_styles_problem');
 
 function spider_facebook_ifr_styles_problem(){
@@ -29,8 +23,11 @@ function spider_facebook_ifr_styles_problem(){
 		</style>
 		<?php
 }
-
-
+//////shortcode for facebook
+add_action('init', 'spider_facebook_output_buffer');
+function spider_facebook_output_buffer() {
+        ob_start();
+}
 add_filter('the_content','spider_facebook_front_end_shortcode',5000);
 function spider_facebook_front_end_shortcode($content) {
      
@@ -163,7 +160,8 @@ function spider_facebook_front_end_short($content){
 		switch($task){
 		
 		case 'logout':
-		wp_logout();
+	
+			wp_logout();
 		 wp_redirect(get_permalink());
 		return '';
 		
@@ -652,7 +650,7 @@ add_action('admin_menu', 'Spider_Facebook_options_panel');
 function Spider_Facebook_options_panel(){
 							add_menu_page(	'Theme page title', 'Spider Facebook', 'manage_options', 'Spider_Facebook_manage', 'Spider_Facebook_manage',plugins_url('images/fb_right_menu.png',__FILE__))  ;
 	$facebook_manager_page=	add_submenu_page( 'Spider_Facebook_manage', 'Manage Facebook', 'Manage Facebook', 'manage_options', 'Spider_Facebook_manage', 'Spider_Facebook_manage');
-							add_submenu_page( 'Spider_Facebook_manage', 'Licensing', 'Licensing', 'manage_options', 'Licensing_Spider_Facebook', 'Licensing_Spider_Facebook');
+	                        add_submenu_page( 'Spider_Facebook_manage', 'Licensing', 'Licensing', 'manage_options', 'Licensing_Spider_Facebook', 'Licensing_Spider_Facebook');
 							add_submenu_page( 'Spider_Facebook_manage', 'Uninstall Spider_Facebook ', 'Uninstall  Spider Facebook', 'manage_options', 'Uninstall_Spider_Facebook', 'Uninstall_Spider_Facebook');
 							add_action('admin_print_styles-' . $facebook_manager_page, 'spider_facebook_admin_scripts');
 }
@@ -672,13 +670,12 @@ function spider_facebook_admin_scripts(){
 }
 
 
-
 function Licensing_Spider_Facebook(){
 	
 	?>
     
    <div style="width:95%"> <p>
-This plugin is the non-commercial version of the Spider Facebook. Use of this plugin is free.The only limitation is the number of the types of the Facebook social plugins which is 1. If you want to remove the limitation, you are required to purchase a license.<br>
+This plugin is the non-commercial version of the Spider Facebook. Use of this plugin is free. The limitations of the free version are: FB Login Button and FB Register Button. If you want to remove the limitations, you are required to purchase a license.<br>
 The commercial version of Spider Facebook is also include integration of your WordPress web site with Google Plus, LinkedIn, Twitter.
  </p>
 <br /><br />
@@ -694,10 +691,7 @@ The commercial version of Spider Facebook is also include integration of your Wo
 
     
      <?php
-	
-	
-	
-	
+		
 }
 
 
