@@ -4,7 +4,7 @@ Donate link: http://web-dorado.com/products/wordpress-facebook.html
 Tags: player, facebook, omments, Facebook registration, facebook platform, friends, Like, like button, open graph, page, plugin, posts, sidebar, social, Social Plugins
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

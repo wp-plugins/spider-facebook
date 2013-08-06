@@ -32,7 +32,7 @@ function spider_facebook_front_meta() {
         <?php
 	}
 	if($post->post_type=='post'){
-		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE articles (LIKE '%***".$post->ID."***%' OR articles='all') AND `published`=1 ";
+		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (articles LIKE '%***".$post->ID."***%' OR articles='all') AND `published`=1 ";
 		$param=$wpdb->get_results($query);
 		$get_post_for_facebook_id=get_post($post->ID);
 		
