@@ -1,6 +1,6 @@
 <?php 
 /*
-Plugin Name: Spider Facebook
+Plugin Name: Wordpress Facebook
 Plugin URI: http://web-dorado.com/products/wordpress-facebook.html
 Description: Spider Facebook is a WordPress integration tool for Facebook. It includes all the available Facebook social plugins and widgets to be added to your website. As a result, Spider Facebook plugin can help you to fully integrate your website with Facebook. Eventually, your website will become more social and the users will be provided with a personalized user experience.
 Version: 1.0.5
