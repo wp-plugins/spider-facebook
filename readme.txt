@@ -1,4 +1,4 @@
-=== Spider Facebook===
+=== Wordpress Facebook===
 Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-facebook.html
 Tags: player, facebook, omments, Facebook registration, facebook platform, friends, Like, like button, open graph, page, plugin, posts, sidebar, social, Social Plugins
