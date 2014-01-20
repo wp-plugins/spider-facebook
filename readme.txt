@@ -199,7 +199,7 @@ Example:
 2.2.14 Add pages. Choose pages to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen pages on the user's wall.		
 2.2.15 Vertical Position. Choose whether to place the plugin at the top or at the bottom.		
 2.2.16 Style. Here you can customize certain style options. Simply change the values of the parameters that are listed in the box.		
-2.2.17 Add to <html> Tag. Add the code (ONLY ONCE) to the <html> tag of your template's index.php file (templates/your_template/index.php).		
+2.2.17 Add to <html> Tag. Add the code (ONLY ONCE) to the <html> tag of your template's index.php file ("templates/your_template/index.php").		
 Example: 
 <html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">			
 
