@@ -100,7 +100,7 @@ After downloading the ZIP file
 5.  Click **Install Now** button.  
 6.  Once it is complete, activate the plugin.  
 
-Once the plugin is activated, you'll notice a menu on the left called "Facebook".  
+Once the plugin is activated, you'll notice a menu on the left called Spider Facebook.  
 If any problem occurs with [Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.  
 
 == Screenshots ==
