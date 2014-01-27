@@ -96,7 +96,7 @@ After downloading the ZIP file
 1.  Login to your WordPress site administrator panel and head over the 'Plugins' menu  
 2.  Click 'Add New'  
 3.  Choose the 'Upload' option
-4.  Click **Choose file** (**Browse**) and select the Spider Facebook zip file.  
+4.  Click **Choose file** (**Browse**) and select the zip file.  
 5.  Click **Install Now** button.  
 6.  Once it is complete, activate the plugin.  
 
@@ -124,7 +124,7 @@ If any problem occurs with [Spider Facebook](http://web-dorado.com/products/word
 1.2 Perform a new installation.		
 1.	Log in to the administrator panel.		
 2.	Go to Plugins Add New > Upload.		
-3.	Click "Choose file" and select the Spider Facebook zip file.	
+3.	Click "Choose file" and select the zip file.	
 4.	Click the "Install Now" button.		
 5.	Click the "Activate Plugin" to activate the plugin.		 
 If the installation is successful, you will see a notification message. If any problem occurs, please contact us at info@web-dorado.com.		
