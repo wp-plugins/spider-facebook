@@ -129,7 +129,11 @@ If any problem occurs with [Spider Facebook](http://web-dorado.com/products/word
 3.	Click "Choose file" and select the zip file.	
 4.	Click the "Install Now" button.		
 5.	Click the "Activate Plugin" to activate the plugin.		 
-If the installation is successful, you will see a notification message. If any problem occurs, please contact us at info@web-dorado.com.		
+If the installation is successful, you will see a notification message. If any problem occurs, please contact us at info@web-dorado.com.
+		
+1.3 Updating the Spider Facebook.  
+
+If you want to update the facebook plugin while preserving your existing data, you need to deactivate and delete the Spider Facebook from the list of installed plugins (Do not uninstall it using the Uninstall Spider Facebook option of the plugin, otherwise you will lose your initial data) and install the new plugin. 
 
 == Spider Facebook Step by step guide Step 2 ==    
 = Adding Facebook social plugins to the website =   	
