@@ -32,6 +32,8 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Request Dialog for sending a Facebook Request from one Facebook user to one or more Facebook users.	
 * Facebook Register 	
 
+In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
+
  ###IMPORTANT: If you think you found a bug in Spider Facebook or have any problem/question concerning the plugin, please check out [Support Forum](http://web-dorado.com/forum/spider-facebook-wordpress.html) in our website. If you do not find a solution here, do not hesitate to contact us at [info@web-dorado.com](mailto:info@web-dorado.com).
 
  
