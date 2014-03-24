@@ -31,6 +31,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Facepile that shows the Facebook profile pictures of the Facebook users who have liked your Facebook page or have signed up for your site.	
 * Facebook Request Dialog for sending a Facebook Request from one Facebook user to one or more Facebook users.	
 * Facebook Register 	
+* The plugin can be used to add social sharing buttons for specific and/or all posts and pages.
 
 In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
