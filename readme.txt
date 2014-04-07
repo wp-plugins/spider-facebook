@@ -18,7 +18,7 @@ This WordPress plugin comes with Open Graph Integration, so that the shared page
 The options for the Facebook buttons are enhanced allowing the user to define some of its design and location. There is also a possibility of displaying count boxes next to some of the buttons wherever needed.   
 Using it you will be able to add not only Like/Share and Registration buttons, but also Facepile, Activity Feed and etc.
 Using Facebook comments you will be able to regulate your comments and avoid spam from WordPress spam bots.
-Facebook Activity Feed will allow displaying the activity of the specific page, e.g. comments and likes in the page.
+Facebook Activity Feed will allow displaying the activity of the specific page, e.g. comments and likes in the page.   
 
 Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.html):  
 
