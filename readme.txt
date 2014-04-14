@@ -3,7 +3,7 @@ Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-facebook.html
 Tags: Facebook, facebook platform, friends, Like, like button, comments, facebook like, open graph, page, plugin, posts, sidebar, social, Social Plugins, Facebook Widget,wordpress like,facebook share, Facebook Page,facebook connect,Facebook Login, facebook plugin, facebook badge, facebook comments, facebook like box, Facebook Open Graph, facebook recommend, facebook button, facebook send, facebook like button, facebook share button, facebook meta, Facebook send button, facebook wall, facebook group,facebook meta tag, social sidebar, post to facebook,  facebook sidebar, Facebook fan page, like box, login with facebook, facebook promotion, facebook integration, Facebook like widget, facebook style, fb, fb like, facebook comments import, social share, social bookmark, social bookmarking, sharebar, share buttons, twitter, twitter share,twitter share button, google bookmarks, google plus one, google +1, google plus, google widget, google plus one button,Google share, google plus share,  linkedin, linkedin share, Linked In,social media auto publish,social network auto publish, social profiles, social media publishing
 Requires at least: 3.0
-Tested up to: 3.8.1
+Tested up to: 3.8.2
 Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
