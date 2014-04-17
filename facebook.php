@@ -3,7 +3,7 @@
 Plugin Name: Wordpress Facebook
 Plugin URI: http://web-dorado.com/products/wordpress-facebook.html
 Description: Spider Facebook is a WordPress integration tool for Facebook. It includes all the available Facebook social plugins and widgets to be added to your website. As a result, Spider Facebook plugin can help you to fully integrate your website with Facebook. Eventually, your website will become more social and the users will be provided with a personalized user experience.
-Version: 1.0.6
+Version: 1.0.7
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -566,7 +566,6 @@ function spider_facebook_editor_window(){
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script language="javascript" type="text/javascript" src="<?php echo get_option("siteurl"); ?>/wp-includes/js/jquery/jquery.js"></script>
 		<script language="javascript" type="text/javascript" src="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-		<link rel="stylesheet" href="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/themes/advanced/skins/wp_theme/dialog.css?ver=342-20110630100">
 		<script language="javascript" type="text/javascript" src="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
 		<script language="javascript" type="text/javascript" src="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
 		<base target="_self">
@@ -586,7 +585,7 @@ function spider_facebook_editor_window(){
 				<div id="Single_product_panel" class="panel current">
 					<table>
 					  <tr>
-						 <td style="height:100px; width:120px; vertical-align:top;">
+						 <td style="height:100px; width:120px; vertical-align:top;font-size:12px">
 							Select a Facebook Plugin 
 						</td>
 						<td style="vertical-align:top">
@@ -623,8 +622,7 @@ function spider_facebook_editor_window(){
 		{
 		   var tagtext;
 		   tagtext='[spider_facebook id="'+document.getElementById('spider_facebook').value+'"]';
-		   window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, tagtext);
-		   tinyMCEPopup.editor.execCommand('mceRepaint');
+		   window.tinyMCE.execCommand('mceInsertContent', false, tagtext);
 		   tinyMCEPopup.close();		
 		}
 		
@@ -640,11 +638,7 @@ function spider_facebook_editor_window(){
 /// styles for hover
 function add_button_style_Spider_Facebook()
 {
-echo '<style type="text/css">
-.wp_themeSkin span.mce_Spider_Facebook_mce {background:url('.plugins_url( 'images/spider_facebooklogo.png' , __FILE__ ).') no-repeat !important;}
-.wp_themeSkin .mceButtonEnabled:hover span.mce_Spider_Facebook_mce,.wp_themeSkin .mceButtonActive span.mce_Spider_Facebook_mce
-{background:url('.plugins_url( 'images/spider_facebookhover.png' , __FILE__ ).') no-repeat !important;}
-</style>';
+echo '<script>var sf_plugin_url = "' . plugins_url('', __FILE__) . '";</script>';
 }
 add_action('admin_head', 'add_button_style_Spider_Facebook');
 add_action('admin_menu', 'Spider_Facebook_options_panel');

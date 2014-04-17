@@ -16,6 +16,7 @@
             ed.addButton('Spider_Facebook_mce', {
             title : 'Spider Facebook',
 			cmd : 'mceSpider_Facebook_mce',
+			image: sf_plugin_url + '/images/spider_facebooklogo.png'
             });
         }
     });
