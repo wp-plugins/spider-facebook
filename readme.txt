@@ -30,7 +30,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Comments box	
 * Facebook Activity Feed	
 * Facebook Recommendations Box	
-* Facebook Like Box that allows liking your Facebook Page, as well as viewing its stream from your website.	
+* Facebook Like Box that allows liking your Facebook Page, as well as viewing its stream from your website. This option cannot be used for any other types of profiles, rather than Facebook pages.	      
 * Facebook Login Button which also contains the Facebook profile pictures of the user's Facebook friends who have signed up for your website.	
 * Facebook Facepile that shows the Facebook profile pictures of the Facebook users who have liked your Facebook page or have signed up for your site.	
 * Facebook Request Dialog for sending a Facebook Request from one Facebook user to one or more Facebook users.	
