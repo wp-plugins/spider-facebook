@@ -21,6 +21,7 @@ Using Facebook comments you will be able to regulate your comments and avoid spa
 Facebook Activity Feed will allow displaying the activity of the specific page, e.g. comments and likes in the page.   
 The number of the displayed comments can be customized from the back end.
 
+
 Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.html):  
 
 * LinkedIn, Twitter, Google, and Facebook social widgets(commercial version)		
@@ -36,7 +37,8 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Request Dialog for sending a Facebook Request from one Facebook user to one or more Facebook users.	
 * Facebook Register 	
 * The plugin can be used to add social sharing buttons for specific and/or all posts and pages.   
-* Possibility of displaying  Facebook plugins within two color schemes: light and dark to best fit the website overall colors.     
+* Possibility of displaying  Facebook plugins within two color schemes: light and dark to best fit the website overall colors.        
+* Spider Facebook can be either used as a widget or plugin (to use for either widget area or specific pages/posts).   
 
 In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
