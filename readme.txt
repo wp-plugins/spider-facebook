@@ -12,6 +12,9 @@ Spider Facebook is a WordPress integration tool for Facebook.It includes all the
 == Description ==
 
 ###[Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html)
+[Demo](http://wpdemo.web-dorado.com/spider-facebook/)  
+[Demo Admin](http://wpdemo.web-dorado.com/wp-admin/admin.php?page=Spider_Facebook_manage)  
+[User Manual](http://web-dorado.com/wordpress-facebook-guide-step-1.html)  
 
 Spider Facebook is a well-equipped tool to integrate your website with Facebook. The product package contains a large number of widgets and plugins to make your website more social. Using it you will be able to add not only Like/Share and Registration buttons, but also Facepile, Facebook commenting box and etc.
 This WordPress plugin comes with Open Graph Integration, so that the shared pages/posts can be fully customized, including title, image and other content. Spider Facebook is user-friendly and comes with a detailed documentation for an easier installation and use.   
