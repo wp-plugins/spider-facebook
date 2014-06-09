@@ -26,7 +26,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Like Button	
 * Facebook Send Button	
 * Facebook Follow plugin that allows Facebook users to subscribe to other Facebook members from your website.	
-* Facebook Comments box	
+* Facebook Comments box, which can be used instead of the typical comment box to avoid spambot comments.
 * Facebook Activity Feed	
 * Facebook Recommendations Box	
 * Facebook Like Box that allows liking your Facebook Page, as well as viewing its stream from your website.	
