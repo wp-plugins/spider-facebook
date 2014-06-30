@@ -37,7 +37,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * The plugin can be used to add social sharing buttons for specific and/or all posts and pages.   
 * Possibility to select the color scheme for the buttons    
 * Possibility of specifying the size of the buttons for a more convenient use       
-* Possibility to specify the position of the created button   
+* Possibility to specify the position of the created button    
 
 In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
