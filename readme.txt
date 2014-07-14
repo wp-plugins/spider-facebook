@@ -1,4 +1,4 @@
-=== Wordpress Facebook===
+=== Wordpress Facebook ===
 Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-facebook.html
 Tags: Facebook, facebook platform, friends, Like, like button, comments, facebook like, open graph, page, plugin, posts, sidebar, social, Social Plugins, Facebook Widget,wordpress like,facebook share, Facebook Page,facebook connect,Facebook Login, facebook plugin, facebook badge, facebook comments, facebook like box, Facebook Open Graph, facebook recommend, facebook button, facebook send, facebook like button, facebook share button, facebook meta, Facebook send button, facebook wall, facebook group,facebook meta tag, social sidebar, post to facebook,  facebook sidebar, Facebook fan page, like box, login with facebook, facebook promotion, facebook integration, Facebook like widget, facebook style, fb, fb like, facebook comments import, social share, social bookmark, social bookmarking, sharebar, share buttons, twitter, twitter share,twitter share button, google bookmarks, google plus one, google +1, google plus, google widget, google plus one button,Google share, google plus share,  linkedin, linkedin share, Linked In,social media auto publish,social network auto publish, social profiles, social media publishing
@@ -35,10 +35,11 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Request Dialog for sending a Facebook Request from one Facebook user to one or more Facebook users.	
 * Facebook Register 	
 * The plugin can be used to add social sharing buttons for specific and/or all posts and pages.   
-* Possibility to select the color scheme for the buttons    
-* Possibility of specifying the size of the buttons for a more convenient use       
-* Possibility to specify the position of the created button    
+* Possibility to select the color scheme for the buttons.    
+* Possibility of specifying the size of the buttons for a more convenient use.       
+* Possibility to specify the position of the created button.    
 * Facebook Request button can be used to invite the Facebook users to join a game or use a specific third-party application.   
+* Possibility to choose between light and dark color schemes for the buttons based on the website colors.   
 
 In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
