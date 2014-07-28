@@ -154,45 +154,46 @@ If you want to update the facebook plugin while preserving your existing data, y
 == Spider Facebook Step by step guide Step 2 ==    
 = Adding Facebook social plugins to the website =   	
 
-*	From the navigation bar on the left select Spider Facebook>Manage Facebook.			
-*	On the upper left hand of the screen click on the Add a Facebook Plugin button.			
-
-2.1 Adding a Like Button 	
-2.1.1 Title. Specify a title for the plugin to be able to identify the plugin in back-end.		
-2.1.2 Publish. Choose whether to publish the plugin or not.		
-2.1.3 Rendering. Choose how to render the plugin. IFRAME does not allow adding a Send Button. The URL option allows placing a link that redirects to a page with the plugin. Specify the link title in the Link text field, as well as the new page Target.		
-2.1.4 Type of URL. By default, the plugin refers to the current page, but it is possible to link it to a different page by choosing the URL option and filling out the Url field.	
-2.1.5 App ID. Enter your Facebook Application ID.	
-2.1.6 Width. Specify the width (in pixels) of the plugin container.	
-2.1.7 Button Label. Choose the button label.	
-2.1.8 Show Send Button. Choose whether to place a Send button next to the Like button or not.	
-2.1.9 Show Page Fans. Choose whether to show Page Fans or not.	
-2.1.10 Layout style. Select a layout style for the plugin.	
-2.1.11 Background color. Choose a background color for the plugin container.	
-2.1.12 Color Scheme. Select the color scheme of the plugin.		
-2.1.13 Font. Choose the text font of the plugin.	
-2.1.14 Language Preference. 	
-*	Custom. Select the plugin language.		
-*	Current. Adjusts to the language of the website.		
-2.1.15 All Posts. Adds the plugin to all the posts on the website.		
-2.1.16 Default image for Posts. When a user likes a post, the activity, along with the post description, appears on his/her Facebook wall. This option allows providing a default image that will accompany all the posts liked by the users.		
-2.1.17 Posts. Choose the posts to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen post on the user's wall. Note that certain META tags are filled out automatically, but you can edit them.		
--	Title. The title of the post. 	
--	Type. The source website will be categorized by the chosen type.	
--	URL. For providing a canonical address for the post.		
--	Image. The image accompanying the published post.		
--	Site Name. For specifying a name for your website.		
--	Description. For providing a description for the post.		
--	Admin ID. You can fill out the Admin ID of your Facebook page to connect the published post to the page.		
-2.1.18 Vertical Position. Choose whether to place the plugin at the top or at the bottom of the post.		
-2.1.19 On all pages. Adds the plugin to all the pages on the website.		
-2.1.20 Default image for pages.  Provide a default image for all the pages.		
-2.1.21 Pages. Choose the pages to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen pages on the user's wall.		
-2.1.22 Vertical Position. Choose whether to place the plugin at the top or at the bottom.		
-2.1.23 Style. Here you can customize certain style options. Simply change the values of the parameters that are listed in the box.		
-2.1.24 Add to <html> Tag. Add the code (ONLY ONCE) to the <html> tag of your template's index.php file (templates/your_template/index.php).		
-Example:
-<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">		
+*	From the navigation bar on the left select Spider Facebook>Manage Facebook.	  		
+*	On the upper left hand of the screen click on the Add a Facebook Plugin button.	 
+  		
+2.1 Adding a Like Button  
+2.1.1 Title. Specify a title for the plugin to be able to identify the plugin in back-end.   
+2.1.2 Publish. Choose whether to publish the plugin or not.    
+2.1.3 Rendering. Choose how to render the plugin. IFRAME does not allow adding a Send Button.The URL option allows placing a link that redirects to a page with the plugin. Specify the link title in the Link text field, as well as the new page Target.    
+2.1.4 Type of URL. By default, the plugin refers to the current page, but it is possible to link it to a different page by choosing the URL option and filling out the Url field.   
+2.1.5 App ID. Enter your Facebook Application ID.    
+2.1.6 Width. Specify the width (in pixels) of the plugin container.   
+2.1.7 Button Label. Choose the button label.   
+2.1.8 Show Send Button. Choose whether to place a Send button next to the Like button or not.    
+2.1.9 Show Page Fans. Choose whether to show Page Fans or not.   
+2.1.10 Layout style. Select a layout style for the plugin.    
+2.1.11 Background color. Choose a background color for the plugin container.    
+2.1.12 Color Scheme. Select the color scheme of the plugin.    
+2.1.13 Font. Choose the text font of the plugin.   
+2.1.14 Language Preference.     
+Custom. Select the plugin language.   
+Current. Adjusts to the language of the website.   
+2.1.15 All Posts. Adds the plugin to all the posts on the website.   
+2.1.16 Default image for Posts. When a user likes apost, the activity, along with the post description, appears on his/her Facebook wall. This option allows providing a default image that will accompany all the posts liked by the users.    
+2.1.17 Posts. Choose the posts to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen post on the user’s wall. Note that certain META tags are filled out automatically, but you can edit them.    
+-           Title. The title of the post.    
+-           Type. The source website will be categorized by the chosen type.   
+-           URL. For providing a canonical address for the post.   
+-           Image. The image accompanying the published post.   
+-           Site Name. For specifying a name for your website.   
+-           Description. For providing a description for the post.   
+-        Admin ID. You can fill out the Admin ID of your Facebook page to connect the published post to the page.   
+2.1.18 Vertical Position. Choose whether to place the plugin at the top or at the bottom of the post.    
+2.1.19 On all pages. Adds the plugin to all the pages on the website.  
+2.1.20 Default image for pages. Provide a default image for all the pages.   
+2.1.21 Pages. Choose the pages to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen pages on the user’s wall.   
+2.1.22 Vertical Position. Choose whether to place the plugin at the top or at the bottom.   
+2.1.23 Style. Here you can customize certain style options. Simply change the values of the parameters that are listed in the box.  
+2.1.24 Add to <html> Tag. Add the code (ONLY ONCE) to the <html> tag of your template’s index.php file (templates/your_template/index.php).  
+Example: 
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">  
+		
 
 
 2.2 Adding a Send Button		
