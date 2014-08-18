@@ -177,7 +177,7 @@ Custom. Select the plugin language.
 Current. Adjusts to the language of the website.   
 2.1.15 All Posts. Adds the plugin to all the posts on the website.   
 2.1.16 Default image for Posts. When a user likes apost, the activity, along with the post description, appears on his/her Facebook wall. This option allows providing a default image that will accompany all the posts liked by the users.    
-2.1.17 Posts. Choose the posts to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen post on the user’s wall. Note that certain META tags are filled out automatically, but you can edit them.    
+2.1.17 Posts. Choose the posts to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen post on the user's wall. Note that certain META tags are filled out automatically, but you can edit them.    
 -           Title. The title of the post.    
 -           Type. The source website will be categorized by the chosen type.   
 -           URL. For providing a canonical address for the post.   
@@ -188,10 +188,10 @@ Current. Adjusts to the language of the website.
 2.1.18 Vertical Position. Choose whether to place the plugin at the top or at the bottom of the post.    
 2.1.19 On all pages. Adds the plugin to all the pages on the website.  
 2.1.20 Default image for pages. Provide a default image for all the pages.   
-2.1.21 Pages. Choose the pages to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen pages on the user’s wall.   
+2.1.21 Pages. Choose the pages to which you want to add the plugin. The following META tags allow you to customize the appearance of the chosen pages on the user's wall.   
 2.1.22 Vertical Position. Choose whether to place the plugin at the top or at the bottom.   
 2.1.23 Style. Here you can customize certain style options. Simply change the values of the parameters that are listed in the box.  
-2.1.24 Add to <html> Tag. Add the code (ONLY ONCE) to the <html> tag of your template’s index.php file (templates/your_template/index.php).  
+2.1.24 Add to <html> Tag. Add the code (ONLY ONCE) to the <html> tag of your template's index.php file (templates/your_template/index.php).  
 Example: 
 <html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">  
 		
