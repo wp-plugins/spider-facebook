@@ -42,6 +42,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Request button can be used to invite the Facebook users to join a game or use a specific third-party application.   
 * Possibility to choose between light and dark color schemes for the buttons based on the website colors.   
 * Possibility to choose the position of the count boxes.   
+* Possibility to add metadata for displaying specific content when sharing specific pages/posts.    
 
 In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
