@@ -3,16 +3,15 @@ Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-facebook.html
 Tags: Facebook, facebook platform, friends, Like, like button, comments, facebook like, open graph, page, plugin, posts, sidebar, social, Social Plugins, Facebook Widget,wordpress like,facebook share, Facebook Page,facebook connect,Facebook Login, facebook plugin, facebook badge, facebook comments, facebook like box, Facebook Open Graph, facebook recommend, facebook button, facebook send, facebook like button, facebook share button, facebook meta, Facebook send button, facebook wall, facebook group,facebook meta tag, social sidebar, post to facebook,  facebook sidebar, Facebook fan page, like box, login with facebook, facebook promotion, facebook integration, Facebook like widget, facebook style, fb, fb like, facebook comments import, social share, social bookmark, social bookmarking, sharebar, share buttons, twitter, twitter share,twitter share button, google bookmarks, google plus one, google +1, google plus, google widget, google plus one button,Google share, google plus share,  linkedin, linkedin share, Linked In,social media auto publish,social network auto publish, social profiles, social media publishing
 Requires at least: 3.0
-Tested up to: 3.9.2
+Tested up to: 4.0
 Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Spider Facebook is a WordPress integration tool for Facebook.It includes all the available Facebook social plugins and widgets to be added to your website. 
 == Description ==
-
-###[Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html)
-
+[Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html)  
+ 
 Spider Facebook is a well-equipped tool to integrate your website with Facebook. The product package contains a large number of widgets and plugins to make your website more social. Using it you will be able to add not only Like/Share and Registration buttons, but also Facepile, Facebook commenting box and etc.
 This WordPress plugin comes with Open Graph Integration, so that the shared pages/posts can be fully customized, including title, image and other content. Spider Facebook is user-friendly and comes with a detailed documentation for an easier installation and use.   
 The options for the Facebook buttons are enhanced allowing the user to define some of its design and location. There is also a possibility of displaying count boxes next to some of the buttons wherever needed.   
