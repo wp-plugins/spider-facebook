@@ -53,6 +53,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Possibility to change the language of the button label when creating the button   
 * Possibility to choose the number of comments to be displayed within a page/post   
 * Support for custom styling when creating buttons  
+* Possibility to set the width and length of the comment box for Facebook comments  
 
 In addition to the social integration widgets, Facebook plugin allows having registration possibility with Facebook, which is one of the most common features for the high-end websites. (commercial version)
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
