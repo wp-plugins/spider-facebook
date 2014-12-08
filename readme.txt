@@ -34,10 +34,10 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Facebook Activity Feed	
 * Facebook Recommendations Box	
 * Facebook Like Box that allows liking your Facebook Page, as well as viewing its stream from your website.	
-* Facebook Login Button which also contains the Facebook profile pictures of the user's Facebook friends who have signed up for your website.	
+* Facebook Login Button which also contains the Facebook profile pictures of the user's Facebook friends who have signed up for your website. (commercial version) 	
 * Facebook Facepile that shows the Facebook profile pictures of the Facebook users who have liked your Facebook page or have signed up for your site.	
 * Facebook Request Dialog for sending a Facebook Request from one Facebook user to one or more Facebook users.	
-* Facebook Register 	
+* Facebook Register (commercial version) 	
 * The plugin can be used to add social sharing buttons for specific and/or all posts and pages.   
 * Possibility to select the color scheme for the buttons.    
 * Possibility of specifying the size of the buttons for a more convenient use.       
