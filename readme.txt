@@ -202,7 +202,7 @@ Current. Adjusts to the language of the website.
 -           Image. The image accompanying the published post.   
 -           Site Name. For specifying a name for your website.   
 -           Description. For providing a description for the post.   
--        Admin ID. You can fill out the Admin ID of your Facebook page to connect the published post to the page.   
+-           Admin ID. You can fill out the Admin ID of your Facebook page to connect the published post to the page.   
 2.1.18 Vertical Position. Choose whether to place the plugin at the top or at the bottom of the post.    
 2.1.19 On all pages. Adds the plugin to all the pages on the website.  
 2.1.20 Default image for pages. Provide a default image for all the pages.   
@@ -534,4 +534,4 @@ Example:
 3.1 Open the page/post where you want to publish the Facebook plugin.		
 3.2 Click on the Spider Facebook button .		
 3.3 Select the Facebook plugin you want to insert and click on the Insert button. You can also edit the META tags in the Spider Facebook section at the bottom of the page. Note that these META tags have a higher priority than the ones on the Facebook plugin parameters page.		
-3.4 Alternatively, you can manually insert the Facebook plugin shortcode into the post/page. Simply copy [spider_facebook id="N"] into the page/post. "N" is the ID of the plugin and can be found in the list of plugins in the Manage Facebook section of Spider Facebook.		
+3.4 Alternatively, you can manually insert the Facebook plugin shortcode into the post/page. Simply copy [spider_facebook id="N"] into the page/post. "N" is the ID of the plugin and can be found in the Manage Facebook section of Spider Facebook.		
