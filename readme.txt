@@ -164,7 +164,8 @@ If any problem occurs with [Spider Facebook](http://web-dorado.com/products/word
 3.	Click "Choose file" and select the zip file.	
 4.	Click the "Install Now" button.		
 5.	Click the "Activate Plugin" to activate the plugin.		 
-If the installation is successful, you will see a notification message. If any problem occurs, please contact us at info@web-dorado.com.
+If the installation is successful, you will see a notification message.  
+If any problem occurs with [Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.
 		
 1.3 Updating the Spider Facebook.  
 
