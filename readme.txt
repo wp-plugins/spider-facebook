@@ -162,6 +162,8 @@ If any problem occurs with [Spider Facebook](http://web-dorado.com/products/word
 1.	Log in to the administrator panel.		
 2.	Go to Plugins Add New > Upload.		
 3.	Click "Choose file" and select the zip file.	
+*For Mac Users*     
+*Go to your Downloads folder and locate the folder with the Spider Facebook. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.* 
 4.	Click the "Install Now" button.		
 5.	Click the "Activate Plugin" to activate the plugin.		 
 If the installation is successful, you will see a notification message.  
