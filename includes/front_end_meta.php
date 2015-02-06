@@ -32,7 +32,7 @@ function spider_facebook_front_meta() {
         <?php
 	}
 	if($post->post_type=='post'){
-		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (articles LIKE '%***".$post->ID."***%' OR articles='all') AND `published`=1 ";
+		$query =$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (articles LIKE '%%***%d***%%' OR articles='all') AND `published`=1 ",$post->ID);
 		$param=$wpdb->get_results($query);
 		$get_post_for_facebook_id=get_post($post->ID);
 		
@@ -49,7 +49,7 @@ function spider_facebook_front_meta() {
 		{
 			if(!count($param)){
 			$matches_spider_face[1][0];
-			$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE id=".$matches_spider_face[1][0]."";
+			$query =$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE id=%d",$matches_spider_face[1][0]);
 			$par=$wpdb->get_row($query);
 			if(!($par->type=='likebutton' || $par->type=='sendbutton' || $par->type=='comment'))
 			{
@@ -264,7 +264,7 @@ function spider_facebook_front_meta() {
 		}
 	}
 		if($post->post_type=='page'){
-		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (items LIKE '%***".$post->ID."***%' OR items='all') AND `published`=1 ";
+		$query =$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (items LIKE '%%***%d***%%' OR items='all') AND `published`=1 ",$post->ID);
 		$param=$wpdb->get_results($query);
 		$get_post_for_facebook_id=get_post($post->ID);
 		
@@ -281,7 +281,7 @@ function spider_facebook_front_meta() {
 		{
 			if(!count($param)){
 			$matches_spider_face[1][0];
-			$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE id=".$matches_spider_face[1][0]."";
+			$query =$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE id=%d",$matches_spider_face[1][0]);
 			$par=$wpdb->get_row($query);
 			}
 		}

@@ -15,8 +15,12 @@ function select_posts_for_facebook(){
 	{
 		$cat_id='';
 	}
+	$where='';
+	$order='';
+	$limit=0;
 	$sort["sortid_by"]="post_date";
-	
+	$sort["default_style"]="manage-column column-title ";
+	$sort["custom_style"]="manage-column column-title";
 	
 		if(isset($_POST['page_number']))
 		{
@@ -28,19 +32,19 @@ function select_posts_for_facebook(){
 					{
 						$sort["custom_style"]="manage-column column-title sorted asc";
 						$sort["1_or_2"]="2";
-						$order="ORDER BY ".$sort["sortid_by"]." ASC";
+						$order="ORDER BY ".sanitize_text_field($sort["sortid_by"])." ASC";
 					}
 					else
 					{
 						$sort["custom_style"]="manage-column column-title sorted desc";
 						$sort["1_or_2"]="1";
-						$order="ORDER BY ".$sort["sortid_by"]." DESC";
+						$order="ORDER BY ".sanitize_text_field($sort["sortid_by"])." DESC";
 					}
 				}
 				
 		if($_POST['page_number'])
 			{
-				$limit=($_POST['page_number']-1)*20; 
+				$limit=((int)$_POST['page_number']-1)*20; 
 			}
 			else
 			{
@@ -52,8 +56,8 @@ function select_posts_for_facebook(){
 		'posts_per_page'  => 20000,
 		'numberposts'     => 20,
 		'offset'          => ($limit),
-		'category'        => $cat_id,
-		'orderby'         => $sort["sortid_by"],
+		'category'        => sanitize_text_field($cat_id),
+		'orderby'         => sanitize_text_field($sort["sortid_by"]),
 		'order'           => 'DESC',
 		'include'         => '',
 		'exclude'         => '',
@@ -66,16 +70,16 @@ function select_posts_for_facebook(){
 		'suppress_filters' => false );
 		global $filterrr;
 		if(isset($_POST['search_events_by_title']))
-		$filterrr=$_POST['search_events_by_title'];
-		
+		$filterrr=sanitize_text_field($_POST['search_events_by_title']);
+			
 		add_filter( 'posts_where', 'filter_for_post' );
-	$myposts=get_posts( $args_for_choosen_fb_posts );
-	$categories = get_categories();
-	
-	$pageNav['total'] =count($myposts);
+		$myposts=get_posts( $args_for_choosen_fb_posts );
+		$categories = get_categories();
+		
+		$pageNav['total'] =count($myposts);
 		$pageNav['limit'] =	 $limit/20+1;
-	remove_filter( 'posts_where', 'filter_for_post' );
-	html_select_posts_for_facebook($myposts,$pageNav, $sort,$categories);
+		remove_filter( 'posts_where', 'filter_for_post' );
+		html_select_posts_for_facebook($myposts,$pageNav, $sort,$categories);
 	
 }
 function filter_for_post( $where = '' ) {
@@ -197,7 +201,7 @@ function checkAll( n, fldName ) {
 <?php
 foreach($categories as $categorie){?>	
 					 
-					   <option value="<?php echo $categorie->cat_ID; ?>" <?php if($_POST['cat_id']==$categorie->cat_ID){echo 'selected="selected"';} ?>><?php echo $categorie->name; ?></option>
+					   <option value="<?php echo $categorie->cat_ID; ?>" <?php if(isset($_POST['cat_id']) && $_POST['cat_id']==$categorie->cat_ID){echo 'selected="selected"';} ?>><?php echo $categorie->name; ?></option>
 <?php }
 ?>						   					  
 					</select>
@@ -213,7 +217,7 @@ foreach($categories as $categorie){?>
         </table>
     <?php
 	$serch_value='';
-	if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=$_POST['search_events_by_title']; }else{$serch_value="";}} 
+	if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=sanitize_text_field($_POST['search_events_by_title']); }else{$serch_value="";}} 
 	$serch_fields='<div class="alignleft actions" style="width:180px;">
     	<label for="search_events_by_title" style="font-size:14px">Title: </label>
         <input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="clear_serch_texts()">
@@ -233,8 +237,8 @@ foreach($categories as $categorie){?>
             <th width="20" class="manage-column column-cb check-column">
             <input  type="checkbox" name="toggle" id="toggle" value="" onclick="checkAll(<?php echo count($rows)?>, 'p')">
             </th>
- <th scope="col" id="id" class="<?php if($sort["sortid_by"]=="id") echo $sort["custom_style"]; else echo $sort["default_style"]; ?>" style=" width:120px;text-align: center; " ><a href="javascript:ordering('id',<?php if($sort["sortid_by"]=="id") echo $sort["1_or_2"]; else echo "1"; ?>)"><span>ID</span><span class="sorting-indicator"></span></a></th>
- <th scope="col" id="title" class="<?php if($sort["sortid_by"]=="title") echo $sort["custom_style"]; else echo $sort["default_style"]; ?>" style="" ><a href="javascript:ordering('title',<?php if($sort["sortid_by"]=="title") echo $sort["1_or_2"]; else echo "1"; ?>)"><span>Title</span><span class="sorting-indicator"></span></a></th>
+ <th scope="col" id="id" class="<?php if($sort["sortid_by"]=="id") echo $sort["custom_style"]; else echo sanitize_text_field($sort["default_style"]); ?>" style=" width:120px;text-align: center; " ><a href="javascript:ordering('id',<?php if($sort["sortid_by"]=="id") echo $sort["1_or_2"]; else echo "1"; ?>)"><span>ID</span><span class="sorting-indicator"></span></a></th>
+ <th scope="col" id="title" class="<?php if($sort["sortid_by"]=="title") echo $sort["custom_style"]; else echo sanitize_text_field($sort["default_style"]); ?>" style="" ><a href="javascript:ordering('title',<?php if($sort["sortid_by"]=="title") echo $sort["1_or_2"]; else echo "1"; ?>)"><span>Title</span><span class="sorting-indicator"></span></a></th>
  </TR>
  </thead>
  <tbody>
@@ -259,16 +263,13 @@ foreach($categories as $categorie){?>
 	 $meta_post_sitename=get_bloginfo( 'name' );
 	 $meta_post_description ='';
  }
- 
- 
+  
 ?>
  <tr class="<?php echo "row$k"; ?>"> 
          <td align="center"><?php echo $i+1?></td>
         	<td>
 			<input type="checkbox" id="p<?php echo $i?>" value="<?php echo $row->ID;?>" />
 			<input type="hidden" id="title_<?php echo $i?>" value="<?php echo  htmlspecialchars($row->post_title);?>" />
-            
-                        
             <input type="hidden" id="type_<?php echo $i?>" value="<?php echo  htmlspecialchars($meta_post_type);?>" />
             <input type="hidden" id="url_<?php echo $i?>" value="<?php echo  htmlspecialchars($meta_post_url);?>" />
             <input type="hidden" id="image_<?php echo $i?>" value="<?php echo  htmlspecialchars('');?>" />
@@ -289,8 +290,8 @@ foreach($categories as $categorie){?>
  </tbody>
  </table>
  <input type="hidden" name="boxchecked" value="0">
- <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
- <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
+ <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo sanitize_text_field($_POST['asc_or_desc']);?>"  />
+ <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo sanitize_text_field($_POST['order_by']);?>"  />
  <?php
 ?>
     
@@ -316,10 +317,14 @@ function select_pages_for_facebook(){
 	{
 		$cat_id='';
 	}
-	
+	$where='';
+	$order='';
+	$limit=0;
+	$sort["sortid_by"]="post_date";
+	$sort["custom_style"]="manage-column column-title sorted asc";
+	$sort["default_style"]="manage-column column-title";
 		if(isset($_POST['page_number']))
-		{
-				
+		{				
 				if($_POST['asc_or_desc'])
 				{
 					$sort["sortid_by"]=$_POST['order_by'];
@@ -327,21 +332,21 @@ function select_pages_for_facebook(){
 					{
 						$sort["custom_style"]="manage-column column-title sorted asc";
 						$sort["1_or_2"]="2";
-						$order="ORDER BY ".$sort["sortid_by"]." ASC";
+						$order="ORDER BY ".sanitize_text_field($sort["sortid_by"])." ASC";
 						$asc_desc_="ASC";
 					}
 					else
 					{
 						$sort["custom_style"]="manage-column column-title sorted desc";
 						$sort["1_or_2"]="1";
-						$order="ORDER BY ".$sort["sortid_by"]." DESC";
+						$order="ORDER BY ".sanitize_text_field($sort["sortid_by"])." DESC";
 						$asc_desc_="DESC";
 					}
 				}
 				
 		if($_POST['page_number'])
 			{
-				$limit=($_POST['page_number']-1)*20; 
+				$limit=((int)$_POST['page_number']-1)*20; 
 			}
 			else
 			{
@@ -353,8 +358,8 @@ function select_pages_for_facebook(){
 		'posts_per_page'  => 20000,
 		'numberposts'     => 20,
 		'offset'          => ($limit),
-		'category'        => $cat_id,
-		'orderby'         => $sort["sortid_by"],
+		'category'        => sanitize_text_field($cat_id),
+		'orderby'         => sanitize_text_field($sort["sortid_by"]),
 		'order'           => 'DESC',
 		'include'         => '',
 		'exclude'         => '',
@@ -367,8 +372,7 @@ function select_pages_for_facebook(){
 		'suppress_filters' => false );
 		global $filterrr;
 		if(isset($_POST['search_events_by_title']))
-		$filterrr=$_POST['search_events_by_title'];
-		
+		$filterrr=sanitize_text_field($_POST['search_events_by_title']);		
 		add_filter( 'posts_where', 'filter_for_post' );
 	$myposts=get_posts( $args_for_choosen_fb_posts );
 	$pageNav['total'] =count($myposts);
@@ -519,7 +523,7 @@ function item()
 	if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=$_POST['search_events_by_title']; }else{$serch_value="";}} 
 	$serch_fields='<div class="alignleft actions" style="width:180px;">
     	<label for="search_events_by_title" style="font-size:14px">Title: </label>
-        <input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="clear_serch_texts()">
+        <input type="text" name="search_events_by_title" value="'.sanitize_text_field($serch_value).'" id="search_events_by_title" onchange="clear_serch_texts()">
     </div>
 	<div class="alignleft actions">
    		<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
@@ -586,13 +590,8 @@ function item()
  </tbody>
  </table>
  <input type="hidden" name="boxchecked" value="0">
- <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
- <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
- <?php
-?>
-    
-    
-   
+ <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo sanitize_text_field($_POST['asc_or_desc']);?>"  />
+ <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo sanitize_text_field($_POST['order_by']);?>"  />   
  </form>
     <?php
 	

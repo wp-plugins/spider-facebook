@@ -19,9 +19,6 @@
  
 function html_spider_facebook_show($rows, $pageNav, $sort)
 {
-	
-		
-	global $wpdb;
 	?>
     <script language="javascript">
 	function ordering(name,as_or_desc)
@@ -60,10 +57,10 @@ var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.
     </tr>
     </table>
     <?php
-	if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=$_POST['search_events_by_title']; }else{$serch_value="";}} 
+	if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_attr($_POST['search_events_by_title']); }else{$serch_value="";}} 
 	$serch_fields='<div class="alignleft actions" style="width:180px;">
     	<label for="search_events_by_title" style="font-size:14px">Title: </label>
-        <input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="clear_serch_texts()">
+        <input type="text" name="search_events_by_title" value="'.(isset($serch_value)?esc_attr($serch_value):'').'" id="search_events_by_title" onchange="clear_serch_texts()">
     </div>
 	<div class="alignleft actions">
    		<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
@@ -97,8 +94,8 @@ var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.
  <?php } ?>
  </tbody>
  </table>
- <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
- <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
+ <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo sanitize_text_field($_POST['asc_or_desc']);?>"  />
+ <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo sanitize_text_field($_POST['order_by']);?>"  />
  <?php
 ?>
     
@@ -149,10 +146,6 @@ function html_spider_facebook_add( $row,$arts_id,$titles,$items_id,$item_titles)
 		
 		$meta_admins=explode('***',$row->meta_admins);
 		$meta_admins= array_slice($meta_admins,0, count($meta_admins)-1);
-		//$meta_app_id=explode('***',$row->meta_app_id);
-		//$meta_app_id= array_slice($meta_app_id,0, count($meta_app_id)-1); 
-		
-		
 		
 		$item_meta_title=explode('***',$row->item_meta_title);
 		$item_meta_title= array_slice($item_meta_title,0, count($item_meta_title)-1);
@@ -174,7 +167,7 @@ function html_spider_facebook_add( $row,$arts_id,$titles,$items_id,$item_titles)
 		
 		$item_meta_admins=explode('***',$row->item_meta_admins);
 		$item_meta_admins= array_slice($item_meta_admins,0, count($item_meta_admins)-1);
-		?>
+?>
 		
 		
 <style>
@@ -3220,7 +3213,7 @@ jQuery(function() {
 		</a>
 	</td></tr>
 	<tr>
-  <td width="100%"><h2><?php if($edit_or_add) echo "Edit Facebook - ".htmlspecialchars($row->title); else echo "Adding New Facebook" ?></h2></td>
+  <td width="100%"><h2><?php if(isset($edit_or_add) && $edit_or_add) echo "Edit Facebook - ".htmlspecialchars($row->title); else echo "Adding New Facebook" ?></h2></td>
   <td align="right"><input type="button" onclick="submitbutton('Save')" value="Save" class="button-secondary action"> </td>  
   <td align="right"><input type="button" onclick="submitbutton('Apply')" value="Apply" class="button-secondary action"> </td> 
   <td align="right"><input type="button" onclick="window.location.href='admin.php?page=Spider_Facebook_manage'" value="Cancel" class="button-secondary action"> </td> 
@@ -3320,8 +3313,8 @@ jQuery(function() {
 						</label>
 					</td>
 			     <td style="width:100%">
-					               <input type="radio" value="1" name="published" <?php if($row->published=="1") echo 'checked="checked"';?> />Yes
-                                   <input type="radio" value="0" name="published" <?php if($row->published=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1" name="published" <?php checked($row->published,"1");?> />Yes
+                                   <input type="radio" value="0" name="published" <?php checked($row->published,"0");?>/>No
 				</td>
 				</tr>
 <tr id="render_tr">
@@ -3345,8 +3338,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="normal" id="n_url"  name="url_type" <?php if($row->url_type=="normal") echo 'checked="checked"';?>  onchange="change_url('normal')" />URL
-                                   <input type="radio" value="auto"   id="a_url" name="url_type" <?php if($row->url_type=="auto") echo 'checked="checked"';?> onchange="change_url('auto')" />Current
+					               <input type="radio" value="normal" id="n_url"  name="url_type" <?php checked($row->url_type,"normal");?>  onchange="change_url('normal')" />URL
+                                   <input type="radio" value="auto"   id="a_url" name="url_type" <?php checked($row->url_type,"auto");?> onchange="change_url('auto')" />Current
                                    
 									
 					</td>
@@ -3370,9 +3363,9 @@ jQuery(function() {
      </td>
      <td style="width:100%">
 	    <select name="count_mode">
-		    <option value="vertical"   <?php if($row->count_mode=="vertical") echo 'selected="selected"';?>>Top</option>
-            <option value="horizontal" <?php if($row->count_mode=="horizontal") echo 'selected="selected"';?>>Right</option>
-            <option value="none"       <?php if($row->count_mode=="none") echo 'selected="selected"';?>>None</option>
+		    <option value="vertical"   <?php selected($row->count_mode,"vertical");?>>Top</option>
+            <option value="horizontal" <?php selected($row->count_mode,"horizontal");?>>Right</option>
+            <option value="none"       <?php selected($row->count_mode,"none");?>>None</option>
 			
 		</select>
      </td>
@@ -3386,8 +3379,8 @@ jQuery(function() {
 					</td>
 					<td style="width:100%">
 					       <select name="hor_place">
-                              <option value="left"     <?php if($row->hor_place=="left")    echo 'selected="selected"';?>>Left</option>
-                              <option value="right"   <?php if($row->hor_place=="right") echo 'selected="selected"';?>>Right</option>
+                              <option value="left"     <?php selected($row->hor_place,"left");?>>Left</option>
+                              <option value="right"   <?php selected($row->hor_place,"right");?>>Right</option>
 				          </select>
                                    
 									
@@ -3457,8 +3450,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="1"  name="fb_only" <?php if($row->fb_only=="1") echo 'checked="checked"';?>/>Yes
-                                   <input type="radio" value="0"  name="fb_only" <?php if($row->fb_only=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1"  name="fb_only" <?php checked($row->fb_only,"1");?>/>Yes
+                                   <input type="radio" value="0"  name="fb_only" <?php checked($row->fb_only,"0");?>/>No
                                    
 									
 					</td>
@@ -3472,9 +3465,9 @@ jQuery(function() {
      </td>
      <td>
 	    <select name="reg_type">
-		    <option value="auto"       <?php if($row->reg_type=="auto") echo 'selected="selected"';?>>Automatically generates a username and imports user profile information</option>
-            <option value="password"   <?php if($row->reg_type=="password") echo 'selected="selected"';?>>The user sets the username and password</option>
-            <option value="captcha"    <?php if($row->reg_type=="captcha") echo 'selected="selected"';?>>Requires setting username and password and verifies with captcha</option>
+		    <option value="auto"       <?php selected($row->reg_type,"auto");?>>Automatically generates a username and imports user profile information</option>
+            <option value="password"   <?php selected($row->reg_type,"password");?>>The user sets the username and password</option>
+            <option value="captcha"    <?php selected($row->reg_type,"captcha");?>>Requires setting username and password and verifies with captcha</option>
 			
 		</select>
      </td>
@@ -3492,11 +3485,11 @@ jQuery(function() {
      </td>
      <td style="width:100%">
 	    <select name="share_type">
-		    <option value="button"       <?php if($row->share_type=="button") echo 'selected="selected"';?>>Standard</option>
-            <option value="link"         <?php if($row->share_type=="link") echo 'selected="selected"';?>>Text</option>
-            <option value="icon_link"    <?php if($row->share_type=="icon_link") echo 'selected="selected"';?>>Text and icon</option>
-			<option value="button_count" <?php if($row->share_type=="button_count") echo 'selected="selected"';?>>Button count</option>
-			<option value="box_count"    <?php if($row->share_type=="box_count") echo 'selected="selected"';?>>Box count</option>
+		    <option value="button"       <?php selected($row->share_type,"button");?>>Standard</option>
+            <option value="link"         <?php selected($row->share_type,"link");?>>Text</option>
+            <option value="icon_link"    <?php selected($row->share_type,"icon_link");?>>Text and icon</option>
+			<option value="button_count" <?php selected($row->share_type,"button_count");?>>Button count</option>
+			<option value="box_count"    <?php selected($row->share_type,"box_count");?>>Box count</option>
 			
 		  </select>
      </td>
@@ -3533,7 +3526,7 @@ jQuery(function() {
                                     <input type="text" name="url_value"  size="80" value="<?php echo htmlspecialchars($row->url_value); ?>"/>
 					</td>
                </tr>
-	 
+                
 	 
 <tr id="target">
      <td class="key">
@@ -3543,9 +3536,9 @@ jQuery(function() {
      </td>
      <td style="width:100%">
 	    <select name="target">
-            <option value="_blank" <?php if($row->target=="_blank") echo 'selected="selected"';?>>_blank</option>
-            <option value="_top" <?php if($row->target=="_top") echo 'selected="selected"';?>>_top</option>
-			<option value="_parent" <?php if($row->target=="_parent") echo 'selected="selected"';?>>_parent</option>
+            <option value="_blank" <?php selected($row->target,"_blank");?>>_blank</option>
+            <option value="_top" <?php selected($row->target,"_top");?>>_top</option>
+			<option value="_parent" <?php selected($row->target,"_parent");?>>_parent</option>
 		  </select>
      </td>
      </tr>
@@ -3567,9 +3560,9 @@ jQuery(function() {
      </td>
      <td style="width:100%">
           <select name="size">
-            <option value="small" <?php if($row->size=="small") echo 'selected="selected"';?>>Small</option>
-            <option value="medium" <?php if($row->size=="medium") echo 'selected="selected"';?>>Medium</option>
-			<option value="large" <?php if($row->size=="large") echo 'selected="selected"';?>>Large</option>
+            <option value="small" <?php selected($row->size,"small");?>>Small</option>
+            <option value="medium" <?php selected($row->size,"medium");?>>Medium</option>
+			<option value="large" <?php selected($row->size,"large");?>>Large</option>
 		  </select>
      </td>
      </tr>
@@ -3591,8 +3584,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="1"  name="head" <?php if($row->head=="1") echo 'checked="checked"';?> />Yes
-                                   <input type="radio" value="0" name="head" <?php if($row->head=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1"  name="head" <?php checked($row->head,"1");?> />Yes
+                                   <input type="radio" value="0" name="head" <?php checked($row->head,"0");?>/>No
                                    
 									
 					</td>
@@ -3604,8 +3597,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="1"  name="stream" <?php if($row->stream=="1") echo 'checked="checked"';?>/>Yes
-                                   <input type="radio" value="0" name="stream" <?php if($row->stream=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1"  name="stream" <?php checked($row->stream,"1");?>/>Yes
+                                   <input type="radio" value="0" name="stream" <?php checked($row->stream,"0");?>/>No
                                    
 									
 					</td>
@@ -3617,8 +3610,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="true"  name="recom" <?php if($row->recom=="true") echo 'checked="checked"';?>/>Yes
-                                   <input type="radio" value="false" name="recom" <?php if($row->recom=="false") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="true"  name="recom" <?php checked($row->recom,"true");?>/>Yes
+                                   <input type="radio" value="false" name="recom" <?php checked($row->recom,"false");?>/>No
                                    
 									
 					</td>
@@ -3631,8 +3624,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="like"  name="action" <?php if($row->action=="like") echo 'checked="checked"';?>/>Like
-                                   <input type="radio" value="recommend" name="action" <?php if($row->action=="recommend") echo 'checked="checked"';?>/>Recommend
+					               <input type="radio" value="like"  name="action" <?php checked($row->action,"like");?>/>Like
+                                   <input type="radio" value="recommend" name="action" <?php checked($row->action,"recommend");?>/>Recommend
                                    
 									
 					</td>
@@ -3644,8 +3637,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="1"  name="send" <?php if($row->send=="1") echo 'checked="checked"';?>/>Yes
-                                   <input type="radio" value="0" name="send" <?php if($row->send=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1"  name="send" <?php checked($row->send,"1");?>/>Yes
+                                   <input type="radio" value="0" name="send" <?php checked($row->send,"0");?>/>No
                                    
 									
 					</td>
@@ -3657,8 +3650,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="1"  name="face"  <?php if($row->face=="1") echo 'checked="checked"';?>/>Yes
-                                   <input type="radio" value="0" name="face"  <?php if($row->face=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1"  name="face"  <?php checked($row->face,"1");?>/>Yes
+                                   <input type="radio" value="0" name="face"  <?php checked($row->face,"0");?>/>No
                                    
 									
 					</td>
@@ -3672,9 +3665,9 @@ jQuery(function() {
 					</td>
 					<td style="width:100%">
 					          <select name="layout">
-                              <option value="standard" <?php if($row->layout=="standard") echo 'selected="selected"';?>>Standard</option>
-                              <option value="button_count" <?php if($row->layout=="button_count") echo 'selected="selected"';?>>Button_count</option>
-							  <option value="box_count" <?php if($row->layout=="box_count") echo 'selected="selected"';?>>Box_count</option>
+                              <option value="standard" <?php selected($row->layout,"standard");?>>Standard</option>
+                              <option value="button_count" <?php selected($row->layout,"button_count");?>>Button_count</option>
+							  <option value="box_count" <?php selected($row->layout,"box_count");?>>Box_count</option>
                               </select>
                                    
 									
@@ -3687,8 +3680,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="1"  name="bord" <?php if($row->bord=="1") echo 'checked="checked"';?>/>Yes
-                                   <input type="radio" value="0" name="bord" <?php if($row->bord=="0") echo 'checked="checked"';?>/>No
+					               <input type="radio" value="1"  name="bord" <?php checked($row->bord,"1");?>/>Yes
+                                   <input type="radio" value="0" name="bord" <?php checked($row->bord,"0");?>/>No
                                    
 									
 					</td>
@@ -3727,8 +3720,8 @@ jQuery(function() {
 					</td>
 					<td >
 					          <select name="colorsc">
-                              <option value="light" <?php if($row->colorsc=="light") echo 'selected="selected"';?>>Light</option>
-                              <option value="dark"  <?php if($row->colorsc=="dark") echo 'selected="selected"';?>>Dark</option>
+                              <option value="light" <?php selected($row->colorsc,"light");?>>Light</option>
+                              <option value="dark"  <?php selected($row->colorsc,"dark");?>>Dark</option>
                               </select>
                                    
 									
@@ -3742,8 +3735,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td >
-					               <input type="radio" value="1"  name="request_type" <?php if($row->request_type=="1") echo 'checked="checked"';?>/>Multi users
-                                   <input type="radio" value="0"  name="request_type" <?php if($row->request_type=="0") echo 'checked="checked"';?>/>One user
+					               <input type="radio" value="1"  name="request_type" <?php checked($row->request_type,"1");?>/>Multi users
+                                   <input type="radio" value="0"  name="request_type" <?php checked($row->request_type,"0");?>/>One user
                                    
 									
 					</td>
@@ -3768,12 +3761,12 @@ jQuery(function() {
 					</td>
 					<td style="width:100%">
 		<select name="font">
-            <option value="arial" <?php if($row->font=="arial") echo 'selected="selected"';?>>Arial</option>
-            <option value="lucida grande" <?php if($row->font=="lucida grande") echo 'selected="selected"';?>>Lucida grande</option>
-			<option value="segoe ui" <?php if($row->font=="segoe ui") echo 'selected="selected"';?>>Segoe ui</option>
-			<option value="tahoma" <?php if($row->font=="tahoma") echo 'selected="selected"';?>>Tahoma</option>
-			<option value="trebuchet ms" <?php if($row->font=="trebuchet ms") echo 'selected="selected"';?>>Trebuchet ms</option>
-			<option value="verdana" <?php if($row->font=="verdana") echo 'selected="selected"';?>>Verdana</option>
+            <option value="arial" <?php selected($row->font,"arial");?>>Arial</option>
+            <option value="lucida grande" <?php selected($row->font,"lucida grande");?>>Lucida grande</option>
+			<option value="segoe ui" <?php selected($row->font,"segoe ui");?>>Segoe ui</option>
+			<option value="tahoma" <?php selected($row->font,"tahoma");?>>Tahoma</option>
+			<option value="trebuchet ms" <?php selected($row->font,"trebuchet ms");?>>Trebuchet ms</option>
+			<option value="verdana" <?php selected($row->font,"verdana");?>>Verdana</option>
           </select>
                                    
 									
@@ -3786,8 +3779,8 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					               <input type="radio" value="normal" title="Plugin language" name="lang_type" <?php if($row->lang_type=="normal") echo 'checked="checked"';?>  onchange="change_lang('normal')" />Custom
-                                   <input type="radio" value="auto" name="lang_type" title="Adjusts to the language of the website" <?php if($row->lang_type=="auto") echo 'checked="checked"';?> onchange="change_lang('auto')" />Current
+					               <input type="radio" value="normal" title="Plugin language" name="lang_type" <?php checked($row->lang_type,"normal");?>  onchange="change_lang('normal')" />Custom
+                                   <input type="radio" value="auto" name="lang_type" title="Adjusts to the language of the website" <?php checked($row->lang_type,"auto");?> onchange="change_lang('auto')" />Current
                                    
 									
 					</td>
@@ -3800,96 +3793,96 @@ jQuery(function() {
 					</td>
 					<td style="width:100%">
 		<select name="lang">
-<option value="sq_AL" <?php if($row->lang=="sq_AL") echo 'selected="selected"';?>>Albanian</option>
-<option value="ar_AR" <?php if($row->lang=="ar_AR") echo 'selected="selected"';?> >Arabic</option>
-<option value="hy_AM" <?php if($row->lang=="hy_AM") echo 'selected="selected"';?> >Armenian</option>
-<option value="az_AZ" <?php if($row->lang=="az_AZ") echo 'selected="selected"';?> >Azeri</option>
-<option value="eu_ES" <?php if($row->lang=="eu_ES") echo 'selected="selected"';?> >Basque</option>
-<option value="be_BY" <?php if($row->lang=="be_BY") echo 'selected="selected"';?> >Belarusian </option>
-<option value="bn_IN" <?php if($row->lang=="bn_IN") echo 'selected="selected"';?> >Bengali</option>
-<option value="bs_BA" <?php if($row->lang=="bs_BA") echo 'selected="selected"';?> >Bosnian</option>
-<option value="bg_BG" <?php if($row->lang=="bg_BG") echo 'selected="selected"';?> >Bulgarian</option>
-<option value="ck_US" <?php if($row->lang=="ck_US") echo 'selected="selected"';?> >Cherokee </option>
-<option value="hr_HR" <?php if($row->lang=="hr_HR") echo 'selected="selected"';?> >Croatian</option>
-<option value="cs_CZ" <?php if($row->lang=="cs_CZ") echo 'selected="selected"';?> >Czech</option>
-<option value="da_DK" <?php if($row->lang=="da_DK") echo 'selected="selected"';?> >Danish</option>
-<option value="nl_NL" <?php if($row->lang=="nl_NL") echo 'selected="selected"';?> >Dutch</option>
-<option value="nl_BE" <?php if($row->lang=="nl_BE") echo 'selected="selected"';?> >Dutch (Belgie)</option>
-<option value="af_ZA" <?php if($row->lang=="af_ZA") echo 'selected="selected"';?> >Afrikaans </option>
-<option value="en_PI" <?php if($row->lang=="en_PI") echo 'selected="selected"';?> >English (Pirate) </option>
-<option value="en_GB" <?php if($row->lang=="en_GB") echo 'selected="selected"';?> >English (UK)</option>
-<option value="en_US" <?php if($row->lang=="en_US") echo 'selected="selected"';?> >English (US)</option>
-<option value="en_UD" <?php if($row->lang=="en_UD") echo 'selected="selected"';?> >English (Upside Down)</option>
-<option value="eo_EO" <?php if($row->lang=="eo_EO") echo 'selected="selected"';?> >Esperanto</option>
-<option value="et_EE" <?php if($row->lang=="et_EE") echo 'selected="selected"';?> >Estonian</option>
-<option value="fo_FO" <?php if($row->lang=="fo_FO") echo 'selected="selected"';?> >Faroese</option>
-<option value="tl_PH" <?php if($row->lang=="tl_PH") echo 'selected="selected"';?> >Filipino</option>
-<option value="fi_FI" <?php if($row->lang=="fi_FI") echo 'selected="selected"';?> >Finnish</option>
-<option value="fr_CA" <?php if($row->lang=="fr_CA") echo 'selected="selected"';?> >French (Canada) </option>
-<option value="fr_FR" <?php if($row->lang=="fr_FR") echo 'selected="selected"';?> >French (France)</option>
-<option value="gl_ES" <?php if($row->lang=="gl_ES") echo 'selected="selected"';?> >Galician</option>
-<option value="ka_GE" <?php if($row->lang=="ka_GE") echo 'selected="selected"';?> >Georgian </option>
-<option value="de_DE" <?php if($row->lang=="de_DE") echo 'selected="selected"';?> >German</option>
-<option value="el_GR" <?php if($row->lang=="el_GR") echo 'selected="selected"';?> >Greek</option>
-<option value="gu_IN" <?php if($row->lang=="gu_IN") echo 'selected="selected"';?> >Gujarati</option>
-<option value="he_IL" <?php if($row->lang=="he_IL") echo 'selected="selected"';?> >Hebrew</option>
-<option value="hi_IN" <?php if($row->lang=="hi_IN") echo 'selected="selected"';?> >Hindi</option>
-<option value="hu_HU" <?php if($row->lang=="hu_HU") echo 'selected="selected"';?> >Hungarian</option>
-<option value="is_IS" <?php if($row->lang=="is_IS") echo 'selected="selected"';?> >Icelandic</option>
-<option value="id_ID" <?php if($row->lang=="id_ID") echo 'selected="selected"';?> >Indonesian</option>
-<option value="ga_IE" <?php if($row->lang=="ga_IE") echo 'selected="selected"';?> >Irish</option>
-<option value="it_IT" <?php if($row->lang=="it_IT") echo 'selected="selected"';?> >Italian</option>
-<option value="ja_JP" <?php if($row->lang=="ja_JP") echo 'selected="selected"';?> >Japanese</option>
-<option value="jv_ID" <?php if($row->lang=="jv_ID") echo 'selected="selected"';?> >Javanese</option>
-<option value="kn_IN" <?php if($row->lang=="kn_IN") echo 'selected="selected"';?> >Kannada</option>
-<option value="km_KH" <?php if($row->lang=="km_KH") echo 'selected="selected"';?> >Khmer</option>
-<option value="ko_KR" <?php if($row->lang=="ko_KR") echo 'selected="selected"';?> >Korean</option>
-<option value="ku_TR" <?php if($row->lang=="ku_TR") echo 'selected="selected"';?> >Kurdish</option>
-<option value="la_VA" <?php if($row->lang=="la_VA") echo 'selected="selected"';?> >Latin</option>
-<option value="lv_LV" <?php if($row->lang=="lv_LV") echo 'selected="selected"';?> >Latvian</option>
-<option value="fb_LT" <?php if($row->lang=="fb_LT") echo 'selected="selected"';?> >Leet Speak</option>
-<option value="lt_LT" <?php if($row->lang=="lt_LT") echo 'selected="selected"';?> >Lithuanian</option>
-<option value="mk_MK" <?php if($row->lang=="mk_MK") echo 'selected="selected"';?> >Macedonian</option>
-<option value="mg_MG" <?php if($row->lang=="mg_MG") echo 'selected="selected"';?> >Malagasy</option>
-<option value="ms_MY" <?php if($row->lang=="ms_MY") echo 'selected="selected"';?> >Malay</option>
-<option value="ml_IN" <?php if($row->lang=="ml_IN") echo 'selected="selected"';?> >Malayalam</option>
-<option value="mn_MN" <?php if($row->lang=="mn_MN") echo 'selected="selected"';?> >Mongolian</option>
-<option value="ne_NP" <?php if($row->lang=="ne_NP") echo 'selected="selected"';?> >Nepali </option>
-<option value="se_NO" <?php if($row->lang=="se_NO") echo 'selected="selected"';?> >Northern Sami</option>
-<option value="nb_NO" <?php if($row->lang=="nb_NO") echo 'selected="selected"';?> >Norwegian (bokmal) </option>
-<option value="nn_NO" <?php if($row->lang=="nn_NO") echo 'selected="selected"';?> >Norwegian (nynorsk) </option>
-<option value="ps_AF" <?php if($row->lang=="ps_AF") echo 'selected="selected"';?> >Pashto</option>
-<option value="fa_IR" <?php if($row->lang=="fa_IR") echo 'selected="selected"';?> >Persian</option>
-<option value="pl_PL" <?php if($row->lang=="pl_PL") echo 'selected="selected"';?> >Polish</option>
-<option value="pt_BR" <?php if($row->lang=="pt_BR") echo 'selected="selected"';?> >Portuguese (Brazil) </option>
-<option value="pt_PT" <?php if($row->lang=="pt_PT") echo 'selected="selected"';?> >Portuguese (Portugal)</option>
-<option value="pa_IN" <?php if($row->lang=="pa_IN") echo 'selected="selected"';?> >Punjabi</option>
-<option value="ro_RO" <?php if($row->lang=="ro_RO") echo 'selected="selected"';?> >Romanian</option>
-<option value="rm_CH" <?php if($row->lang=="rm_CH") echo 'selected="selected"';?> >Romansh</option>
-<option value="ru_RU" <?php if($row->lang=="ru_RU") echo 'selected="selected"';?> >Russian</option>
-<option value="sr_RS" <?php if($row->lang=="sr_RS") echo 'selected="selected"';?> >Serbian</option>
-<option value="zh_CN" <?php if($row->lang=="zh_CN") echo 'selected="selected"';?> >Simplified Chinese (China) </option>
-<option value="sk_SK" <?php if($row->lang=="sk_SK") echo 'selected="selected"';?> >Slovak </option>
-<option value="sl_SI" <?php if($row->lang=="sl_SI") echo 'selected="selected"';?> >Slovenian </option>
-<option value="es_CL" <?php if($row->lang=="es_CL") echo 'selected="selected"';?> >Spanish (Chile)</option>
-<option value="es_CO" <?php if($row->lang=="es_CO") echo 'selected="selected"';?> >Spanish (Colombia)</option>
-<option value="es_MX" <?php if($row->lang=="es_MX") echo 'selected="selected"';?> >Spanish (Mexico)</option>
-<option value="es_ES" <?php if($row->lang=="es_ES") echo 'selected="selected"';?> >Spanish (Spain)</option>
-<option value="es_VE" <?php if($row->lang=="es_VE") echo 'selected="selected"';?> >Spanish (Venezuela)</option>
-<option value="sw_KE" <?php if($row->lang=="sw_KE") echo 'selected="selected"';?> >Swahili</option>
-<option value="sv_SE" <?php if($row->lang=="sv_SE") echo 'selected="selected"';?> >Swedish</option>
-<option value="sy_SY" <?php if($row->lang=="sy_SY") echo 'selected="selected"';?> >Syriac</option>
-<option value="ta_IN" <?php if($row->lang=="ta_IN") echo 'selected="selected"';?> >Tamil</option>
-<option value="te_IN" <?php if($row->lang=="te_IN") echo 'selected="selected"';?> >Telugu</option>
-<option value="th_TH" <?php if($row->lang=="th_TH") echo 'selected="selected"';?> >Thai</option>
-<option value="zh_HK" <?php if($row->lang=="zh_HK") echo 'selected="selected"';?> >Traditional Chinese (Hong Kong) </option>
-<option value="zh_TW" <?php if($row->lang=="zh_TW") echo 'selected="selected"';?> >Traditional Chinese (Taiwan) </option>
-<option value="tr_TR" <?php if($row->lang=="tr_TR") echo 'selected="selected"';?> >Turkish</option>
-<option value="uk_UA" <?php if($row->lang=="uk_UA") echo 'selected="selected"';?> >Ukrainian</option>
-<option value="vi_VN" <?php if($row->lang=="vi_VN") echo 'selected="selected"';?> >Vietnamese</option>
-<option value="cy_GB" <?php if($row->lang=="cy_GB") echo 'selected="selected"';?> >Welsh </option>
-<option value="xh_ZA" <?php if($row->lang=="xh_ZA") echo 'selected="selected"';?> >Xhosa</option>
-<option value="yi_DE" <?php if($row->lang=="yi_DE") echo 'selected="selected"';?> >Yiddish</option>
+<option value="sq_AL" <?php selected($row->lang,"sq_AL");?>>Albanian</option>
+<option value="ar_AR" <?php selected($row->lang,"ar_AR");?> >Arabic</option>
+<option value="hy_AM" <?php selected($row->lang,"hy_AM");?> >Armenian</option>
+<option value="az_AZ" <?php selected($row->lang,"az_AZ");?> >Azeri</option>
+<option value="eu_ES" <?php selected($row->lang,"eu_ES");?> >Basque</option>
+<option value="be_BY" <?php selected($row->lang,"be_BY");?> >Belarusian </option>
+<option value="bn_IN" <?php selected($row->lang,"bn_IN");?> >Bengali</option>
+<option value="bs_BA" <?php selected($row->lang,"bs_BA");?> >Bosnian</option>
+<option value="bg_BG" <?php selected($row->lang,"bg_BG");?> >Bulgarian</option>
+<option value="ck_US" <?php selected($row->lang,"ck_US");?> >Cherokee </option>
+<option value="hr_HR" <?php selected($row->lang,"hr_HR");?> >Croatian</option>
+<option value="cs_CZ" <?php selected($row->lang,"cs_CZ");?> >Czech</option>
+<option value="da_DK" <?php selected($row->lang,"da_DK");?> >Danish</option>
+<option value="nl_NL" <?php selected($row->lang,"nl_NL");?> >Dutch</option>
+<option value="nl_BE" <?php selected($row->lang,"nl_BE");?> >Dutch (Belgie)</option>
+<option value="af_ZA" <?php selected($row->lang,"af_ZA");?> >Afrikaans </option>
+<option value="en_PI" <?php selected($row->lang,"en_PI");?> >English (Pirate) </option>
+<option value="en_GB" <?php selected($row->lang,"en_GB");?> >English (UK)</option>
+<option value="en_US" <?php selected($row->lang,"en_US");?> >English (US)</option>
+<option value="en_UD" <?php selected($row->lang,"en_UD");?> >English (Upside Down)</option>
+<option value="eo_EO" <?php selected($row->lang,"eo_EO");?> >Esperanto</option>
+<option value="et_EE" <?php selected($row->lang,"et_EE");?> >Estonian</option>
+<option value="fo_FO" <?php selected($row->lang,"fo_FO");?> >Faroese</option>
+<option value="tl_PH" <?php selected($row->lang,"tl_PH");?> >Filipino</option>
+<option value="fi_FI" <?php selected($row->lang,"fi_FI");?> >Finnish</option>
+<option value="fr_CA" <?php selected($row->lang,"fr_CA");?> >French (Canada) </option>
+<option value="fr_FR" <?php selected($row->lang,"fr_FR");?> >French (France)</option>
+<option value="gl_ES" <?php selected($row->lang,"gl_ES");?> >Galician</option>
+<option value="ka_GE" <?php selected($row->lang,"ka_GE");?> >Georgian </option>
+<option value="de_DE" <?php selected($row->lang,"de_DE");?> >German</option>
+<option value="el_GR" <?php selected($row->lang,"el_GR");?> >Greek</option>
+<option value="gu_IN" <?php selected($row->lang,"gu_IN");?> >Gujarati</option>
+<option value="he_IL" <?php selected($row->lang,"he_IL");?> >Hebrew</option>
+<option value="hi_IN" <?php selected($row->lang,"hi_IN");?> >Hindi</option>
+<option value="hu_HU" <?php selected($row->lang,"hu_HU");?> >Hungarian</option>
+<option value="is_IS" <?php selected($row->lang,"is_IS");?> >Icelandic</option>
+<option value="id_ID" <?php selected($row->lang,"id_ID");?> >Indonesian</option>
+<option value="ga_IE" <?php selected($row->lang,"ga_IE");?> >Irish</option>
+<option value="it_IT" <?php selected($row->lang,"it_IT");?> >Italian</option>
+<option value="ja_JP" <?php selected($row->lang,"ja_JP");?> >Japanese</option>
+<option value="jv_ID" <?php selected($row->lang,"jv_ID");?> >Javanese</option>
+<option value="kn_IN" <?php selected($row->lang,"kn_IN");?> >Kannada</option>
+<option value="km_KH" <?php selected($row->lang,"km_KH");?> >Khmer</option>
+<option value="ko_KR" <?php selected($row->lang,"ko_KR");?> >Korean</option>
+<option value="ku_TR" <?php selected($row->lang,"ku_TR");?> >Kurdish</option>
+<option value="la_VA" <?php selected($row->lang,"la_VA");?> >Latin</option>
+<option value="lv_LV" <?php selected($row->lang,"lv_LV");?> >Latvian</option>
+<option value="fb_LT" <?php selected($row->lang,"fb_LT");?> >Leet Speak</option>
+<option value="lt_LT" <?php selected($row->lang,"lt_LT");?> >Lithuanian</option>
+<option value="mk_MK" <?php selected($row->lang,"mk_MK");?> >Macedonian</option>
+<option value="mg_MG" <?php selected($row->lang,"mg_MG");?> >Malagasy</option>
+<option value="ms_MY" <?php selected($row->lang,"ms_MY");?> >Malay</option>
+<option value="ml_IN" <?php selected($row->lang,"ml_IN");?> >Malayalam</option>
+<option value="mn_MN" <?php selected($row->lang,"mn_MN");?> >Mongolian</option>
+<option value="ne_NP" <?php selected($row->lang,"ne_NP");?> >Nepali </option>
+<option value="se_NO" <?php selected($row->lang,"se_NO");?> >Northern Sami</option>
+<option value="nb_NO" <?php selected($row->lang,"nb_NO");?> >Norwegian (bokmal) </option>
+<option value="nn_NO" <?php selected($row->lang,"nn_NO");?> >Norwegian (nynorsk) </option>
+<option value="ps_AF" <?php selected($row->lang,"ps_AF");?> >Pashto</option>
+<option value="fa_IR" <?php selected($row->lang,"fa_IR");?> >Persian</option>
+<option value="pl_PL" <?php selected($row->lang,"pl_PL");?> >Polish</option>
+<option value="pt_BR" <?php selected($row->lang,"pt_BR");?> >Portuguese (Brazil) </option>
+<option value="pt_PT" <?php selected($row->lang,"pt_PT");?> >Portuguese (Portugal)</option>
+<option value="pa_IN" <?php selected($row->lang,"pa_IN");?> >Punjabi</option>
+<option value="ro_RO" <?php selected($row->lang,"ro_RO");?> >Romanian</option>
+<option value="rm_CH" <?php selected($row->lang,"rm_CH");?> >Romansh</option>
+<option value="ru_RU" <?php selected($row->lang,"ru_RU");?> >Russian</option>
+<option value="sr_RS" <?php selected($row->lang,"sr_RS");?> >Serbian</option>
+<option value="zh_CN" <?php selected($row->lang,"zh_CN");?> >Simplified Chinese (China) </option>
+<option value="sk_SK" <?php selected($row->lang,"sk_SK");?> >Slovak </option>
+<option value="sl_SI" <?php selected($row->lang,"sl_SI");?> >Slovenian </option>
+<option value="es_CL" <?php selected($row->lang,"es_CL");?> >Spanish (Chile)</option>
+<option value="es_CO" <?php selected($row->lang,"es_CO");?> >Spanish (Colombia)</option>
+<option value="es_MX" <?php selected($row->lang,"es_MX");?> >Spanish (Mexico)</option>
+<option value="es_ES" <?php selected($row->lang,"es_ES");?> >Spanish (Spain)</option>
+<option value="es_VE" <?php selected($row->lang,"es_VE");?> >Spanish (Venezuela)</option>
+<option value="sw_KE" <?php selected($row->lang,"sw_KE");?> >Swahili</option>
+<option value="sv_SE" <?php selected($row->lang,"sv_SE");?> >Swedish</option>
+<option value="sy_SY" <?php selected($row->lang,"sy_SY");?> >Syriac</option>
+<option value="ta_IN" <?php selected($row->lang,"ta_IN");?> >Tamil</option>
+<option value="te_IN" <?php selected($row->lang,"te_IN");?> >Telugu</option>
+<option value="th_TH" <?php selected($row->lang,"th_TH");?> >Thai</option>
+<option value="zh_HK" <?php selected($row->lang,"zh_HK");?> >Traditional Chinese (Hong Kong) </option>
+<option value="zh_TW" <?php selected($row->lang,"zh_TW");?> >Traditional Chinese (Taiwan) </option>
+<option value="tr_TR" <?php selected($row->lang,"tr_TR");?> >Turkish</option>
+<option value="uk_UA" <?php selected($row->lang,"uk_UA");?> >Ukrainian</option>
+<option value="vi_VN" <?php selected($row->lang,"vi_VN");?> >Vietnamese</option>
+<option value="cy_GB" <?php selected($row->lang,"cy_GB");?> >Welsh </option>
+<option value="xh_ZA" <?php selected($row->lang,"xh_ZA");?> >Xhosa</option>
+<option value="yi_DE" <?php selected($row->lang,"yi_DE");?> >Yiddish</option>
 			
 				
           </select>
@@ -3905,7 +3898,7 @@ jQuery(function() {
 						</label>
 					</td>
 					<td style="width:100%">
-					   <input type="checkbox" id="all_arts" <?php if($row->articles=='all') echo 'checked="checked"';?> onclick="all_art(this.checked)" />             
+					   <input type="checkbox" id="all_arts" <?php checked($row->articles,'all')?> onclick="all_art(this.checked)" />             
                                    
 									
 					</td>
@@ -3997,9 +3990,9 @@ function removeImage1()
 					</td>
 					<td>
 					          <select name="place">
-                              <option value="top"     <?php if($row->place=="top")    echo 'selected="selected"';?>>Top</option>
-                              <option value="bottom" id="comment_pos_art"  <?php if($row->place=="bottom") echo 'selected="selected"';?>>Bottom</option>
-							  <option value="both"  <?php if($row->place=="both") echo 'selected="selected"';?>>Both</option>
+                              <option value="top"     <?php selected($row->place,"top");?>>Top</option>
+                              <option value="bottom" id="comment_pos_art"  <?php selected($row->place,"bottom");?>>Bottom</option>
+							  <option value="both"  <?php selected($row->place,"both");?>>Both</option>
                               </select>
                                    
 									
@@ -4020,7 +4013,7 @@ function removeImage1()
 						</label>
 					</td>
 					<td >
-					   <input type="checkbox" id="all_items" <?php if($row->items=='all') echo 'checked="checked"';?> onclick="all_item(this.checked)" />             
+					   <input type="checkbox" id="all_items" <?php checked($row->items,'all');?> onclick="all_item(this.checked)" />             
                                    
 									
 					</td>
@@ -4110,9 +4103,9 @@ function removeImage2(x)
 					</td>
 					<td >
 					          <select name="item_place">
-                              <option value="top"     <?php if($row->item_place=="top")    echo 'selected="selected"';?>>Top</option>
-                              <option value="bottom" id="comment_pos_item"  <?php if($row->item_place=="bottom") echo 'selected="selected"';?>>Bottom</option>
-							  <option value="both"  <?php if($row->item_place=="both") echo 'selected="selected"';?>>Both</option>
+                              <option value="top"     <?php selected($row->item_place,"top");?>>Top</option>
+                              <option value="bottom" id="comment_pos_item"  <?php selected($row->item_place,"bottom");?>>Bottom</option>
+							  <option value="both"  <?php selected($row->item_place,"both");?>>Both</option>
                               </select>
                                    
 									
@@ -4142,7 +4135,7 @@ function removeImage2(x)
 					<td >
 					          
                                    
-					<textarea readonly="readonly" id="html_tag" style="width:310px;height:45px">xmlns:og="http://ogp.me/ns#"  xmlns:fb="http://www.facebook.com/2008/fbml" </textarea>   				
+					<textarea readonly id="html_tag" style="width:310px;height:45px">xmlns:og="http://ogp.me/ns#"  xmlns:fb="http://www.facebook.com/2008/fbml" </textarea>   				
 					</td>
 				</tr>				
 					

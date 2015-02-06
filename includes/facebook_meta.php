@@ -132,25 +132,25 @@ function myplugin_save_postdata( $post_id ) {
   $value_description ='';
   $value_admin_id = '';
 	if(isset($_POST['spider_facebook_title']))
-		$value_title=$_POST['spider_facebook_title'];
+		$value_title=sanitize_text_field($_POST['spider_facebook_title']);
 		
 	if(isset($_POST['spider_facebook_type']))
-		$value_type=$_POST['spider_facebook_type'];
+		$value_type=sanitize_text_field($_POST['spider_facebook_type']);
 		
 	if(isset($_POST['spider_facebook_url']))
-		$value_url=$_POST['spider_facebook_url'];
+		$value_url=sanitize_text_field($_POST['spider_facebook_url']);
 		
 	if(isset($_POST['spider_facebook_image']))
-		$value_image=$_POST['spider_facebook_image'];
+		$value_image=sanitize_text_field($_POST['spider_facebook_image']);
 		
 	if(isset($_POST['spider_facebook_site_name']))
-		$value_site_name=$_POST['spider_facebook_site_name'];
+		$value_site_name=sanitize_text_field($_POST['spider_facebook_site_name']);
 		
 	if(isset($_POST['spider_facebook_description']))
-		$value_description=$_POST['spider_facebook_description'];
+		$value_description=sanitize_text_field($_POST['spider_facebook_description']);
 		
 	if(isset($_POST['spider_facebook_admin_id']))
-		$value_admin_id=$_POST['spider_facebook_admin_id'];
+		$value_admin_id=sanitize_text_field($_POST['spider_facebook_admin_id']);
 	
   	add_post_meta($post_id, '_spider_facebok_title_meta_value', $value_title, true) or   update_post_meta($post_id, '_spider_facebok_title_meta_value', $value_title);
 	add_post_meta($post_id, '_spider_facebok_type_meta_value', $value_type, true) or  update_post_meta($post_id, '_spider_facebok_type_meta_value', $value_type);

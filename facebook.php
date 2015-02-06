@@ -7,7 +7,7 @@ Version: 1.0.10
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
-	 require_once("spider_facebook_widget.php");
+require_once("spider_facebook_widget.php");
 /////      load language
 add_action( 'init', 'spider_facebook_lang' );
 function spider_facebook_lang() {
@@ -54,7 +54,7 @@ function spider_facebook_front_end_shortcode($content) {
 //////////////////// fornt end facebook
 function spider_facebook_front_end($id){	
 	global $wpdb;
-	$facebook=$wpdb->get_row('SELECT * FROM '.$wpdb->prefix.'spiderfacebook_params WHERE `id`='.(int)$id.' AND published=1');
+	$facebook=$wpdb->get_row($wpdb->prepare( 'SELECT * FROM '.$wpdb->prefix.'spiderfacebook_params WHERE `id`=%s AND published=1',$id));
 	$url=get_permalink();
 	$lang=get_bloginfo('language','en-US');
 	if(strpos($url,'?'))
@@ -140,11 +140,11 @@ function spider_facebook_front_end_short($content){
 	//if(isset($_GET['task']) && isset($_GET['type']) && isset($_GET['appid']) && isset($_GET['g_red']) && ($_GET['task']=='registered' || $_GET['task']=='registration'))
 	if(isset($_GET['task']) &&  (isset($_GET['fbid']) || isset($_GET['g_red']) ||  isset($_GET['res']) || isset($_GET['logout_red'])) && ($_GET['task']=='login' || $_GET['task']=='registered' || $_GET['task']=='registration' || $_GET['task']=='loginwith' || $_GET['task']=='logout'))
 	{		
-		$task=$_GET['task'];
-		$type=$_GET['type'];
-		$appid=$_GET['appid'];
+		$task=esc_attr($_GET['task']);
+		$type=esc_attr($_GET['type']);
+		$appid=esc_attr($_GET['appid']);
 		if(isset($_GET['fb_only']))
-		$fb_only=$_GET['fb_only'];
+		$fb_only=esc_attr($_GET['fb_only']);
 		else
 		$fb_only='';
 		$reg_red = $_GET['g_red'];
@@ -317,18 +317,27 @@ function spider_facebook_front_end_short($content){
 		
 		
 		
-		$askofen=wp_insert_user( $userdata );
+		wp_insert_user( $userdata );
 		
 			
 		
 		global $wpdb;
 		if($user_id!=""){
-		$query0 = "DELETE FROM `".$wpdb->prefix."spiderfacebook_login` WHERE user_id=".$user_id;
+		$query0 = $wpdb->prepare( "DELETE FROM `".$wpdb->prefix."spiderfacebook_login` WHERE user_id=%s",$user_id);
 		$wpdb->query($query0);
-		
-		$query1 = "INSERT INTO `".$wpdb->prefix."spiderfacebook_login` (user_id, username, password)
-		VALUES ('".$user_id."', '".$username."','".$password."')";
-		$wpdb->query($query1);		
+		$wpdb->insert( 
+			$wpdb->prefix."spiderfacebook_login", 
+			array( 
+				'user_id' => $user_id, 
+				'username' => $username,
+				'password' =>$password
+			), 
+			array( 
+				'%s', 
+				'%s', 
+				'%s' 
+			) 
+		);	
 		}
 		
 		
@@ -381,20 +390,27 @@ function spider_facebook_front_end_short($content){
 		
 		
 		
-		$askofen=wp_insert_user( $userdata );
+		wp_insert_user( $userdata );
 		
 		 
 		
 		global $wpdb;
 		if($user_id!=""){
-		$query0 = "DELETE FROM `".$wpdb->prefix."spiderfacebook_login` WHERE user_id=".$user_id;
-		$wpdb->query($query0);
-		$query1 = "INSERT INTO `".$wpdb->prefix."spiderfacebook_login` (user_id, username, password)
-		VALUES ('".$user_id."', '".$username."','".$password."')";
-		$wpdb->query($query1);
+			$query0 = $wpdb->prepare("DELETE FROM `".$wpdb->prefix."spiderfacebook_login` WHERE user_id=%s",$user_id);
+			$wpdb->query($query0);
+			$wpdb->insert($wpdb->prefix."spiderfacebook_login", 
+				array( 
+					'user_id' => $user_id, 
+					'username' => $username,
+					'password' =>$password
+				), 
+				array( 
+					'%s', 
+					'%s', 
+					'%s' 
+				) 
+			);			
 		}
-		
-		
 		$creds['user_login'] = $username;
 		$creds['user_password'] =$password;
 		$creds['remember'] = true;
@@ -420,8 +436,8 @@ function spider_facebook_front_end_short($content){
 		//print_r($login_user_id);
 		
 		global $wpdb;
-		$query = "SELECT * FROM ".$wpdb->prefix."spiderfacebook_login
-		WHERE user_id=".$login_user_id;
+		$query = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_login
+		WHERE user_id=%s",$login_user_id);
 		$result=$wpdb->get_row($query);
 		
 		$creds['user_login'] =$result->username;
@@ -441,9 +457,9 @@ function spider_facebook_front_end_short($content){
 	$url=get_permalink();
 			
 	if($post->post_type=='post')
-		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (articles LIKE '%***".$post->ID."***%' OR articles='all') AND `published`=1 ";
+		$query =$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (articles LIKE '%%***%d***%%' OR articles='all') AND `published`=1 ",$post->ID);
 	if(is_page())
-		$query ="SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (items LIKE '%***".$post->ID."***%' OR items='all') AND `published`=1 ";
+		$query =$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."spiderfacebook_params WHERE (items LIKE '%%***%d***%%' OR items='all') AND `published`=1 ",$post->ID);
 	$params=$wpdb->get_results($query);
 	$login_id=wp_generate_password(10);
 	if(!count($params))
@@ -534,7 +550,7 @@ function spider_facebook_front_end_short($content){
 return $content;
 }
 	if(!function_exists('base64_url_decode')){
-	function base64_url_decode($input) {
+		function base64_url_decode($input) {
 		  return base64_decode(strtr($input, '-_', '+/'));
 		}
 	}
@@ -598,8 +614,7 @@ function spider_facebook_editor_window(){
 								 <?php    $ids_spider_facebook=$wpdb->get_results("SELECT `id`,`title` FROM ".$wpdb->prefix."spiderfacebook_params WHERE `published`=1 order by `id` DESC");
 								   foreach($ids_spider_facebook as $id_spider_facebook)
 								   {
-									   ?>
-									   <option value="<?php echo $id_spider_facebook->id; ?>"><?php echo $id_spider_facebook->title; ?></option>
+									   ?><option value="<?php echo $id_spider_facebook->id; ?>"><?php echo $id_spider_facebook->title; ?></option>
 							 <?php }?>
 							</select>
 						 </td>
@@ -642,7 +657,7 @@ function spider_facebook_editor_window(){
 /// styles for hover
 function add_button_style_Spider_Facebook()
 {
-echo '<script>var sf_plugin_url = "' . plugins_url('', __FILE__) . '";</script>';
+	echo '<script>var sf_plugin_url = "' . plugins_url('', __FILE__) . '";</script>';
 }
 add_action('admin_head', 'add_button_style_Spider_Facebook');
 add_action('admin_menu', 'Spider_Facebook_options_panel');
@@ -705,7 +720,7 @@ function Spider_Facebook_manage()
 	global $wpdb;
 	if(isset($_GET['id']))
 	{
-	$id=(int)$_GET['id'];
+		$id=(int)$_GET['id'];
 	}
 	else
 	{
@@ -734,8 +749,8 @@ function Spider_Facebook_manage()
 			break;
 		}
 		sp_fb_save();
+		$xxx=0;
 		if($id){
-		$xxx=0;	
 		
 			try{		
 			$facebook =	new seve_or_update_sp('spiderfacebook_params',$_POST);
@@ -760,9 +775,9 @@ function Spider_Facebook_manage()
 		}
 		
 			if($xxx)
-			spider_facebook_show();
+				spider_facebook_show();
 			else
-			Spider_Facebook_edit($id);
+				Spider_Facebook_edit($id);
 		break;
 		case 'Save':
 		if(!isset($_POST['title']))

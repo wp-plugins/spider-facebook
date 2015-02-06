@@ -12,7 +12,11 @@
  
  function spider_facebook_show(){
  	global $wpdb;
+	
 	$sort["default_style"]="manage-column column-autor sortable desc";
+	$where='';
+	$order='';
+	$sort["sortid_by"]='author';
 	if(isset($_POST['page_number']))
 	{
 			
@@ -23,19 +27,19 @@
 				{
 					$sort["custom_style"]="manage-column column-title sorted asc";
 					$sort["1_or_2"]="2";
-					$order="ORDER BY ".$sort["sortid_by"]." ASC";
+					$order="ORDER BY ".sanitize_text_field($sort["sortid_by"])." ASC";
 				}
 				else
 				{
 					$sort["custom_style"]="manage-column column-title sorted desc";
 					$sort["1_or_2"]="1";
-					$order="ORDER BY ".$sort["sortid_by"]." DESC";
+					$order="ORDER BY ".sanitize_text_field($sort["sortid_by"])." DESC";
 				}
 			}
 			
 	if($_POST['page_number'])
 		{
-			$limit=($_POST['page_number']-1)*20; 
+			$limit=((int)$_POST['page_number']-1)*20; 
 		}
 		else
 		{
@@ -47,7 +51,7 @@
 			$limit=0;
 		}
 	if(isset($_POST['search_events_by_title'])){
-		$search_tag=$_POST['search_events_by_title'];
+		$search_tag=sanitize_text_field($_POST['search_events_by_title']);
 		}
 		
 		else
@@ -76,7 +80,7 @@ function   spider_facebook_edit($id){
 	global $wpdb;
 	
 	
-	$row =$wpdb->get_row('SELECT * FROM '.$wpdb->prefix."spiderfacebook_params WHERE `id`=".$id);
+	$row =$wpdb->get_row($wpdb->prepare('SELECT * FROM '.$wpdb->prefix."spiderfacebook_params WHERE `id`=%d",$id));
 	
 	
 	$arts=array();
@@ -203,11 +207,7 @@ margin-left:0px;
 function sp_fb_save(){
 	
 	global $wpdb;	
-	/*$row =& JTable::getInstance('spiderfacebook_params', 'Table');
-	if(!$row->bind(JRequest::get('post')))
-	{
-		JError::raiseError(500, $row->getError() );
-	}*/
+
 if(!isset($_POST['id'])) $_POST['id'] = null;
 if(!isset($_POST['title'])) $_POST['title'] = null;
 if(!isset($_POST['type'])) $_POST['type'] = null;
@@ -283,7 +283,7 @@ if(!isset($_POST['hor_place'])) $_POST['hor_place'] = null;
 	
 	if($_POST['url_type']=='normal')
 	{
-	    $url=$_POST['url'];
+	    $url=esc_url($_POST['url']);
 	}
 	else
 	{
@@ -291,22 +291,20 @@ if(!isset($_POST['hor_place'])) $_POST['hor_place'] = null;
 	}
 	if($_POST['lang_type']=='normal')
 	{
-	    $lang=$_POST['lang'];
+	    $lang=sanitize_text_field($_POST['lang']);
 	}
 	else
-	{
-	
-	$lang='autoLANGauto';
-	    
-	   
+	{	
+		$lang='autoLANGauto';    
 	}
 	
 	
 	
 	if($_POST['articles']=='***')
-	$_POST['articles']='';
+		$_POST['articles']='';
+		
 	if($_POST['items']=='***')
-	$_POST['items']='';
+		$_POST['items']='';
 	
 	
 switch($_POST['type']){	
@@ -399,7 +397,7 @@ break;
 	
 if($_POST['hor_place']=="left"){
 $_POST['code']='
-<div style="'.$_POST['css'].'">
+<div style="'.esc_attr($_POST['css']).'">
 <div style="float:left">'.$linkedin.'
 </div>
 <div style="margin-left:5px;float:left">'.$twitter.'
@@ -413,7 +411,7 @@ $_POST['code']='
 }
 else{
 $_POST['code']='
-<div style="'.$_POST['css'].'">
+<div style="'.esc_attr($_POST['css']).'">
 <div style="float:right">'.$facebook.'
 </div>
 <div style="margin-right:5px;float:right">'.$googleplus.'
@@ -444,7 +442,7 @@ case 'sendbutton':
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<div style="float:left;margin-right: 20px;" class="fb-send" data-href="'.$url.'" data-font="'.$_POST['font'].'" data-colorscheme="'.$_POST['colorsc'].'"></div>';
+<div style="float:left;margin-right: 20px;" class="fb-send" data-href="'.$url.'" data-font="'.esc_attr($_POST['font']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'"></div>';
 	}
 	else{
 	$_POST['code']='<div id="fb-root"></div>
@@ -455,7 +453,7 @@ case 'sendbutton':
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-	<fb:send href="'.$url.'" font="'.$_POST['font'].'"  colorscheme="'.$_POST['colorsc'].'"></fb:send>';
+	<fb:send href="'.$url.'" font="'.esc_attr($_POST['font']).'"  colorscheme="'.esc_attr($_POST['colorsc']).'"></fb:send>';
 	}
 	break;
 	case 'likebutton':
@@ -472,7 +470,7 @@ case 1:
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
 	
-<div  class="fb-like" data-font="'.$_POST['font'].'" data-href="'.$url.'"  data-action="'.$_POST['action'].'" data-layout="'.$_POST['layout'].'" data-send="'.$_POST['send'].'"  data-colorscheme="'.$_POST['colorsc'].'" data-width="'.$_POST['width'].'"  data-show-faces="'.$_POST['face'].'"  style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+<div  class="fb-like" data-font="'.esc_attr($_POST['font']).'" data-href="'.$url.'"  data-action="'.esc_attr($_POST['action']).'" data-layout="'.esc_attr($_POST['layout']).'" data-send="'.esc_attr($_POST['send']).'"  data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-width="'.esc_attr($_POST['width']).'"  data-show-faces="'.esc_attr($_POST['face']).'"  style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 break;	
 	
 	
@@ -487,15 +485,15 @@ case 2:
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<fb:like href="'.$url.'" font="'.$_POST['font'].'" action="'.$_POST['action'].'" layout="'.$_POST['layout'].'" send="'.$_POST['send'].'" width="'.$_POST['width'].'"  colorscheme="'.$_POST['colorsc'].'" show_faces="'.$_POST['face'].'"  style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:like>';
+<fb:like href="'.$url.'" font="'.esc_attr($_POST['font']).'" action="'.esc_attr($_POST['action']).'" layout="'.esc_attr($_POST['layout']).'" send="'.esc_attr($_POST['send']).'" width="'.esc_attr($_POST['width']).'"  colorscheme="'.esc_attr($_POST['colorsc']).'" show_faces="'.esc_attr($_POST['face']).'"  style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:like>';
 break;
 case 3:
 $encodedurl = urlencode($url);
-$_POST['code']="<iframe src=\"//www.facebook.com/plugins/like.php?href=".$encodedurl."&amp;send=false&amp;layout=".$_POST['layout']."&amp;width=".$_POST['width']."&amp;height=21&amp;colorscheme=".$_POST['colorsc']."&amp;font=".$_POST['font']."&amp;show_faces=".$_POST['face']."&amp;action=".$_POST['action']."\" scrolling=\"no\" frameborder=".$_POST['bord']." style=\" background-color:#".$_POST['backg']."; border-color:#".$_POST['border']."; overflow:hidden; width:".$_POST['width']."px; height:".$_POST['height']."px;".$_POST['css']."\" allowTransparency=\"true\"></iframe>";
+$_POST['code']="<iframe src=\"//www.facebook.com/plugins/like.php?href=".$encodedurl."&amp;send=false&amp;layout=".esc_attr($_POST['layout'])."&amp;width=".esc_attr($_POST['width'])."&amp;height=21&amp;colorscheme=".esc_attr($_POST['colorsc'])."&amp;font=".esc_attr($_POST['font'])."&amp;show_faces=".esc_attr($_POST['face'])."&amp;action=".esc_attr($_POST['action'])."\" scrolling=\"no\" frameborder=".esc_attr($_POST['bord'])." style=\" background-color:#".esc_attr($_POST['backg'])."; border-color:#".esc_attr($_POST['border'])."; overflow:hidden; width:".esc_attr($_POST['width'])."px; height:".esc_attr($_POST['height'])."px;".esc_attr($_POST['css'])."\" allowTransparency=\"true\"></iframe>";
 break;
 case 4:
 $encodedurl = urlencode($url);
-$_POST['code']="<a href=\"//www.facebook.com/plugins/like.php?href=".$encodedurl."&width=".$_POST['width']."&send=false&colorscheme=".$_POST['colorsc']."&layout=".$_POST['layout']."&font=".$_POST['font']."&height=21&action=".$_POST['action']."\" target=\"".$_POST['target']."\">".$_POST['url_value']."</a>";
+$_POST['code']="<a href=\"//www.facebook.com/plugins/like.php?href=".$encodedurl."&width=".esc_attr($_POST['width'])."&send=false&colorscheme=".esc_attr($_POST['colorsc'])."&layout=".esc_attr($_POST['layout'])."&font=".esc_attr($_POST['font'])."&height=21&action=".esc_attr($_POST['action'])."\" target=\"".esc_attr($_POST['target'])."\">".esc_attr($_POST['url_value'])."</a>";
 break;
 	}
 	
@@ -513,7 +511,7 @@ break;
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
 	
-<div class="fb-comments" data-href="'.$url.'" data-num-posts="'.$_POST['post'].'" data-colorscheme="'.$_POST['colorsc'].'" data-width="'.$_POST['width'].'" data-font="'.$_POST['font'].'" data-height="'.$_POST['height'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+<div class="fb-comments" data-href="'.$url.'" data-num-posts="'.esc_attr($_POST['post']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-width="'.esc_attr($_POST['width']).'" data-font="'.esc_attr($_POST['font']).'" data-height="'.esc_attr($_POST['height']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 }
 else{
 $_POST['code']='<div id="fb-root"></div>
@@ -524,7 +522,7 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
- <fb:comments href="'.$url.'" font="'.$_POST['font'].'" num_posts="'.$_POST['post'].'" width="'.$_POST['width'].'" height="'.$_POST['height'].'" colorscheme="'.$_POST['colorsc'].'"  style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:comments>';
+ <fb:comments href="'.$url.'" font="'.esc_attr($_POST['font']).'" num_posts="'.esc_attr($_POST['post']).'" width="'.esc_attr($_POST['width']).'" height="'.esc_attr($_POST['height']).'" colorscheme="'.esc_attr($_POST['colorsc']).'"  style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:comments>';
 }
 break;
 	case 'loginbutton':	
@@ -535,10 +533,10 @@ $_POST['code']='<div id="fb-root"></div>
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1&appId='.$_POST['appid'].'";
+  js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1&appId='.esc_attr($_POST['appid']).'";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<div class="fb-login-button" data-font="'.$_POST['font'].'"  data-width="'.$_POST['width'].'"  data-colorscheme="'.$_POST['colorsc'].'" data-show-faces="'.$_POST['face'].'"  data-max-rows="'.$_POST['rows'].'" style="background:#'.$_POST['backg'].'";'.$_POST['css'].'></div>';
+<div class="fb-login-button" data-font="'.esc_attr($_POST['font']).'"  data-width="'.esc_attr($_POST['width']).'"  data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-show-faces="'.esc_attr($_POST['face']).'"  data-max-rows="'.esc_attr($_POST['rows']).'" style="background:#'.esc_attr($_POST['backg']).'";'.esc_attr($_POST['css']).'></div>';
 }
 else{
 $_POST['code']='<div id="fb-root"></div>
@@ -546,10 +544,10 @@ $_POST['code']='<div id="fb-root"></div>
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1&appId='.$_POST['appid'].'";
+  js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1&appId='.esc_attr($_POST['appid']).'";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
- 	<fb:login-button font="'.$_POST['font'].'"  width="'.$_POST['width'].'" colorscheme="'.$_POST['colorsc'].'" max-rows="'.$_POST['rows'].'" show_faces="'.$_POST['face'].'"  style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:login-button>';
+ 	<fb:login-button font="'.esc_attr($_POST['font']).'"  width="'.esc_attr($_POST['width']).'" colorscheme="'.esc_attr($_POST['colorsc']).'" max-rows="'.esc_attr($_POST['rows']).'" show_faces="'.esc_attr($_POST['face']).'"  style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:login-button>';
 }
 break;	
 	case 'actfeed':	
@@ -562,7 +560,7 @@ break;
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "acebook-jssdk"));</script>
-<div class="fb-activity" data-site="'.$_POST['domain'].'" data-action="'.$_POST['action'].'" data-width="'.$_POST['width'].'" data-height="'.$_POST['height'].'" data-header="'.$_POST['head'].'" data-colorscheme="'.$_POST['colorsc'].'" data-linktarget="'.$_POST['target'].'" data-border-color="#'.$_POST['border'].'" data-font="'.$_POST['font'].'" data-recommendations="'.$_POST['recom'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+<div class="fb-activity" data-site="'.esc_attr($_POST['domain']).'" data-action="'.esc_attr($_POST['action']).'" data-width="'.esc_attr($_POST['width']).'" data-height="'.esc_attr($_POST['height']).'" data-header="'.esc_attr($_POST['head']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-linktarget="'.esc_attr($_POST['target']).'" data-border-color="#'.esc_attr($_POST['border']).'" data-font="'.esc_attr($_POST['font']).'" data-recommendations="'.esc_attr($_POST['recom']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 	
 	}
 else{
@@ -574,7 +572,7 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<fb:activity site="'.$_POST['domain'].'" action="'.$_POST['action'].'" width="'.$_POST['width'].'" height="'.$_POST['height'].'" header="'.$_POST['head'].'" colorscheme="'.$_POST['colorsc'].'" linktarget="'.$_POST['target'].'" border_color="#'.$_POST['border'].'" font="'.$_POST['font'].'" recommendations="'.$_POST['recom'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:activity>';
+<fb:activity site="'.esc_attr($_POST['domain']).'" action="'.esc_attr($_POST['action']).'" width="'.esc_attr($_POST['width']).'" height="'.esc_attr($_POST['height']).'" header="'.esc_attr($_POST['head']).'" colorscheme="'.esc_attr($_POST['colorsc']).'" linktarget="'.esc_attr($_POST['target']).'" border_color="#'.esc_attr($_POST['border']).'" font="'.esc_attr($_POST['font']).'" recommendations="'.esc_attr($_POST['recom']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:activity>';
 }	
 break;
 case 'recommendation':
@@ -587,7 +585,7 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
- <div class="fb-recommendations" data-site="'.$_POST['domain'].'" data-action="'.$_POST['action'].'" data-width="'.$_POST['width'].'" data-height="'.$_POST['height'].'" data-header="'.$_POST['head'].'" data-colorscheme="'.$_POST['colorsc'].'" data-linktarget="'.$_POST['target'].'" data-border-color="#'.$_POST['border'].'" data-font="'.$_POST['font'].'" data-recommendations="'.$_POST['recom'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+ <div class="fb-recommendations" data-site="'.esc_attr($_POST['domain']).'" data-action="'.esc_attr($_POST['action']).'" data-width="'.esc_attr($_POST['width']).'" data-height="'.esc_attr($_POST['height']).'" data-header="'.esc_attr($_POST['head']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-linktarget="'.esc_attr($_POST['target']).'" data-border-color="#'.esc_attr($_POST['border']).'" data-font="'.esc_attr($_POST['font']).'" data-recommendations="'.esc_attr($_POST['recom']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 }
 else{
 $_POST['code']='<div id="fb-root"></div>
@@ -598,7 +596,7 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
- <fb:recommendations site="'.$_POST['domain'].'" action="'.$_POST['action'].'" width="'.$_POST['width'].'" height="'.$_POST['height'].'" header="'.$_POST['head'].'" colorscheme="'.$_POST['colorsc'].'" linktarget="'.$_POST['target'].'" border_color="#'.$_POST['border'].'" font="'.$_POST['font'].'" recommendations="'.$_POST['recom'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:recommendations>';
+ <fb:recommendations site="'.esc_attr($_POST['domain']).'" action="'.esc_attr($_POST['action']).'" width="'.esc_attr($_POST['width']).'" height="'.esc_attr($_POST['height']).'" header="'.esc_attr($_POST['head']).'" colorscheme="'.esc_attr($_POST['colorsc']).'" linktarget="'.esc_attr($_POST['target']).'" border_color="#'.esc_attr($_POST['border']).'" font="'.esc_attr($_POST['font']).'" recommendations="'.esc_attr($_POST['recom']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:recommendations>';
 }
 break;
 case 'facepile':
@@ -612,7 +610,7 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<div class="fb-facepile" data-href="'.$_POST['url'].'" data-size="'.$_POST['size'].'" data-action="'.$_POST['action'].'"  data-font="'.$_POST['font'].'" data-width="'.$_POST['width'].'"  data-max-rows="'.$_POST['rows'].'" data-colorscheme="'.$_POST['colorsc'].'"  style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+<div class="fb-facepile" data-href="'.esc_url($_POST['url']).'" data-size="'.esc_attr($_POST['size']).'" data-action="'.esc_attr($_POST['action']).'"  data-font="'.esc_attr($_POST['font']).'" data-width="'.esc_attr($_POST['width']).'"  data-max-rows="'.esc_attr($_POST['rows']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'"  style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 break;
 case 2:
 $_POST['code']='<div id="fb-root"></div>
@@ -623,15 +621,15 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<fb:facepile href="'.$_POST['url'].'" size="'.$_POST['size'].'" action="'.$_POST['action'].'" font="'.$_POST['font'].'" width="'.$_POST['width'].'"  max-rows="'.$_POST['rows'].'" colorscheme="'.$_POST['colorsc'].'"  style="background:#'.$_POST['backg'].';"></fb:facepile>';
+<fb:facepile href="'.esc_url($_POST['url']).'" size="'.esc_attr($_POST['size']).'" action="'.esc_attr($_POST['action']).'" font="'.esc_attr($_POST['font']).'" width="'.esc_attr($_POST['width']).'"  max-rows="'.esc_attr($_POST['rows']).'" colorscheme="'.esc_attr($_POST['colorsc']).'"  style="background:#'.esc_attr($_POST['backg']).';"></fb:facepile>';
 break;
 case 3:
 $encodedurl = urlencode($_POST['url']);
-$_POST['code']="<iframe src=\"//www.facebook.com/plugins/facepile.php?href=".$encodedurl."&amp;width=".$_POST['width']."&amp;colorscheme=".$_POST['colorsc']."&amp;max_rows=".$_POST['rows']."&amp;action=".$_POST['action']."&amp;size=".$_POST['size']."\" scrolling=\"no\" frameborder=".$_POST['bord']." style=\" background-color:#".$_POST['backg']."; border-color:#".$_POST['border']."; overflow:hidden; width:".$_POST['width']."px; height:".$_POST['height']."px;".$_POST['css']."\" allowTransparency=\"true\"></iframe>";
+$_POST['code']="<iframe src=\"//www.facebook.com/plugins/facepile.php?href=".$encodedurl."&amp;width=".esc_attr($_POST['width'])."&amp;colorscheme=".esc_attr($_POST['colorsc'])."&amp;max_rows=".esc_attr($_POST['rows'])."&amp;action=".esc_attr($_POST['action'])."&amp;size=".esc_attr($_POST['size'])."\" scrolling=\"no\" frameborder=".esc_attr($_POST['bord'])." style=\" background-color:#".esc_attr($_POST['backg'])."; border-color:#".esc_attr($_POST['border'])."; overflow:hidden; width:".esc_attr($_POST['width'])."px; height:".esc_attr($_POST['height'])."px;".esc_attr($_POST['css'])."\" allowTransparency=\"true\"></iframe>";
 break;
 case 4:
 		$encodedurl = urlencode($_POST['url']);
-$_POST['code']="<a href=\"//www.facebook.com/plugins/facepile.php?href=".$encodedurl."&width=".$_POST['width']."&colorscheme=".$_POST['colorsc']."&max_rows=".$_POST['rows']."&border_color=".$_POST['border']."&action=".$_POST['action']."&size=".$_POST['size']."\" target=\"".$_POST['target']."\">".$_POST['url_value']."</a>";
+$_POST['code']="<a href=\"//www.facebook.com/plugins/facepile.php?href=".$encodedurl."&width=".esc_attr($_POST['width'])."&colorscheme=".esc_attr($_POST['colorsc'])."&max_rows=".esc_attr($_POST['rows'])."&border_color=".esc_attr($_POST['border'])."&action=".esc_attr($_POST['action'])."&size=".esc_attr($_POST['size'])."\" target=\"".esc_attr($_POST['target'])."\">".esc_attr($_POST['url_value'])."</a>";
 	break;
 }
 break;
@@ -647,7 +645,7 @@ $_POST['code']='<div id="fb-root"></div>
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
 	
-<div class="fb-follow" data-href="'.$url.'" data-layout="'.$_POST['layout'].'" data-colorscheme="'.$_POST['colorsc'].'" data-show-faces="'.$_POST['face'].'" data-font="'.$_POST['font'].'" data-width="'.$_POST['width'].'" data-border-color="#'.$_POST['border'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+<div class="fb-follow" data-href="'.$url.'" data-layout="'.esc_attr($_POST['layout']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-show-faces="'.esc_attr($_POST['face']).'" data-font="'.esc_attr($_POST['font']).'" data-width="'.esc_attr($_POST['width']).'" data-border-color="#'.esc_attr($_POST['border']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 break;
 case 2:
 $_POST['code']='<div id="fb-root"></div>
@@ -658,15 +656,15 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
- <fb:follow href="'.$url.'" layout="'.$_POST['layout'].'" colorscheme="'.$_POST['colorsc'].'" show_faces="'.$_POST['face'].'" font="'.$_POST['font'].'" width="'.$_POST['width'].'" border_color="#'.$_POST['border'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:follow>';
+ <fb:follow href="'.$url.'" layout="'.esc_attr($_POST['layout']).'" colorscheme="'.esc_attr($_POST['colorsc']).'" show_faces="'.esc_attr($_POST['face']).'" font="'.esc_attr($_POST['font']).'" width="'.esc_attr($_POST['width']).'" border_color="#'.esc_attr($_POST['border']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:follow>';
  break;
  case 3:
  $encodedurl = urlencode($url);
-  $_POST['code']="<iframe src=\"//www.facebook.com/plugins/follow.php?href=".$encodedurl."&amp;width=".$_POST['width']."&amp;colorscheme=".$_POST['colorsc']."&amp;show_faces=".$_POST['face']."&amp;\" scrolling=\"no\" frameborder=".$_POST['bord']." style=\" background-color:#".$_POST['backg']."; border-color:#".$_POST['border']."; overflow:hidden; width:".$_POST['width']."px;".$_POST['css']."\"  allowTransparency=\"true\"></iframe>";
+  $_POST['code']="<iframe src=\"//www.facebook.com/plugins/follow.php?href=".$encodedurl."&amp;width=".esc_attr($_POST['width'])."&amp;colorscheme=".esc_attr($_POST['colorsc'])."&amp;show_faces=".esc_attr($_POST['face'])."&amp;\" scrolling=\"no\" frameborder=".esc_attr($_POST['bord'])." style=\" background-color:#".esc_attr($_POST['backg'])."; border-color:#".esc_attr($_POST['border'])."; overflow:hidden; width:".esc_attr($_POST['width'])."px;".esc_attr($_POST['css'])."\"  allowTransparency=\"true\"></iframe>";
 	break;
 	case 4:
 	$encodedurl = urlencode($url);
-$_POST['code']="<a href=\"//www.facebook.com/plugins/follow.php?href=".$encodedurl."&width=".$_POST['width']."&colorscheme=".$_POST['colorsc']."&show_faces=".$_POST['face']."&border_color=#".$_POST['border']."\" target=\"".$_POST['target']."\">".$_POST['url_value']."</a>";
+$_POST['code']="<a href=\"//www.facebook.com/plugins/follow.php?href=".$encodedurl."&width=".esc_attr($_POST['width'])."&colorscheme=".esc_attr($_POST['colorsc'])."&show_faces=".esc_attr($_POST['face'])."&border_color=#".esc_attr($_POST['border'])."\" target=\"".esc_attr($_POST['target'])."\">".esc_attr($_POST['url_value'])."</a>";
 break;
 }
 break;
@@ -681,7 +679,7 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
- <div class="fb-like-box" data-href="'.$url.'" data-font="'.$_POST['font'].'"  data-width="'.$_POST['width'].'" data-height="'.$_POST['height'].'" data-colorscheme="'.$_POST['colorsc'].'" data-show-faces="'.$_POST['face'].'" data-border-color="#'.$_POST['border'].'" data-stream="'.$_POST['stream'].'" data-header="'.$_POST['head'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></div>';
+ <div class="fb-like-box" data-href="'.$url.'" data-font="'.esc_attr($_POST['font']).'"  data-width="'.esc_attr($_POST['width']).'" data-height="'.esc_attr($_POST['height']).'" data-colorscheme="'.esc_attr($_POST['colorsc']).'" data-show-faces="'.esc_attr($_POST['face']).'" data-border-color="#'.esc_attr($_POST['border']).'" data-stream="'.esc_attr($_POST['stream']).'" data-header="'.esc_attr($_POST['head']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></div>';
 break;
 case 2:
 $_POST['code']='<div id="fb-root"></div>
@@ -692,15 +690,15 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<fb:like-box href="'.$url.'" font="'.$_POST['font'].'" width="'.$_POST['width'].'" height="'.$_POST['height'].'" colorscheme="'.$_POST['colorsc'].'" show_faces="'.$_POST['face'].'" border_color="#'.$_POST['border'].'" stream="'.$_POST['stream'].'" header="'.$_POST['head'].'" style="background:#'.$_POST['backg'].';'.$_POST['css'].'"></fb:like-box>';
+<fb:like-box href="'.$url.'" font="'.esc_attr($_POST['font']).'" width="'.esc_attr($_POST['width']).'" height="'.esc_attr($_POST['height']).'" colorscheme="'.esc_attr($_POST['colorsc']).'" show_faces="'.esc_attr($_POST['face']).'" border_color="#'.esc_attr($_POST['border']).'" stream="'.esc_attr($_POST['stream']).'" header="'.esc_attr($_POST['head']).'" style="background:#'.esc_attr($_POST['backg']).';'.esc_attr($_POST['css']).'"></fb:like-box>';
 break;
 case 3:
  $encodedurl = urlencode($url);
- $_POST['code']="<iframe src=\"//www.facebook.com/plugins/likebox.php?href=".$encodedurl."&amp;width=".$_POST['width']."&amp;colorscheme=".$_POST['colorsc']."&amp;show_faces=".$_POST['face']."&amp;stream=".$_POST['stream']."&amp;header=".$_POST['head']."&amp;height=".$_POST['height']."\" scrolling=\"no\" frameborder=".$_POST['bord']." style=\" background-color:#".$_POST['backg']."; border-color:#".$_POST['border']."; overflow:hidden; width:".$_POST['width']."px; height:".$_POST['height']."px;".$_POST['css']."\" allowTransparency=\"true\"></iframe>";
+ $_POST['code']="<iframe src=\"//www.facebook.com/plugins/likebox.php?href=".$encodedurl."&amp;width=".esc_attr($_POST['width'])."&amp;colorscheme=".esc_attr($_POST['colorsc'])."&amp;show_faces=".esc_attr($_POST['face'])."&amp;stream=".esc_attr($_POST['stream'])."&amp;header=".esc_attr($_POST['head'])."&amp;height=".esc_attr($_POST['height'])."\" scrolling=\"no\" frameborder=".esc_attr($_POST['bord'])." style=\" background-color:#".esc_attr($_POST['backg'])."; border-color:#".esc_attr($_POST['border'])."; overflow:hidden; width:".esc_attr($_POST['width'])."px; height:".esc_attr($_POST['height'])."px;".esc_attr($_POST['css'])."\" allowTransparency=\"true\"></iframe>";
 break;
 case 4:
  $encodedurl = urlencode($url);
- $_POST['code']="<a href=\"//www.facebook.com/plugins/likebox.php?href=".$encodedurl."&width=".$_POST['width']."&height=".$_POST['height']."&colorscheme=".$_POST['colorsc']."&show_faces=".$_POST['face']."&border_color=#".$_POST['border']."&stream=".$_POST['stream']."&header=".$_POST['head']."\" target=\"".$_POST['target']."\">".$_POST['url_value']."</a>";
+ $_POST['code']="<a href=\"//www.facebook.com/plugins/likebox.php?href=".$encodedurl."&width=".esc_attr($_POST['width'])."&height=".esc_attr($_POST['height'])."&colorscheme=".esc_attr($_POST['colorsc'])."&show_faces=".esc_attr($_POST['face'])."&border_color=#".esc_attr($_POST['border'])."&stream=".esc_attr($_POST['stream'])."&header=".esc_attr($_POST['head'])."\" target=\"".esc_attr($_POST['target'])."\">".esc_attr($_POST['url_value'])."</a>";
  break;
  }	
  break;
@@ -711,7 +709,7 @@ $_POST['code']="</script>
     <p><button onclick='addToPage(); return false;'>Add to Page</button></p>
     <p id='msg'></p>
     <script> 
-      FB.init({appId: '".$_POST['appid']."', status: true, cookie: true});
+      FB.init({appId: '".esc_attr($_POST['appid'])."', status: true, cookie: true});
       function addToPage() {
         // calling the API ...
         var obj = {
@@ -732,8 +730,8 @@ $_POST['code']='<div id="fb-root"></div>
   js.src = "//connect.facebook.net/'.$lang.'/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
-<fb:share-button href="'.$url.'" type="'.$_POST['share_type'].'"
-style="'.$_POST['css'].'">
+<fb:share-button href="'.$url.'" type="'.esc_attr($_POST['share_type']).'"
+style="'.esc_attr($_POST['css']).'">
 </fb:share-button>';
 	
 	
@@ -746,17 +744,17 @@ style="'.$_POST['css'].'">
     <input type="button"
       onclick="sendRequestViaMultiFriendSelector(); return false;"
       value="Request"
-	  style="'.$_POST['css'].'"
+	  style="'.esc_attr($_POST['css']).'"
     />
     </p>
      <script>
       FB.init({
-        appId  : "'.$_POST['appid'].'",
+        appId  : "'.esc_attr($_POST['appid']).'",
         frictionlessRequests: true
       });
       function sendRequestViaMultiFriendSelector() {
         FB.ui({method: "apprequests",
-          message: "'.$_POST['req_m'].'"
+          message: "'.esc_attr($_POST['req_m']).'"
         }, requestCallback);
       }
       
@@ -773,7 +771,7 @@ style="'.$_POST['css'].'">
       <input type="button"
         onclick="sendRequestToRecipients(); return false;"
         value="Request"
-		style="'.$_POST['css'].'"
+		style="'.esc_attr($_POST['css']).'"
       />
       <input type="text" value="" name="user_ids" />
       </p>
@@ -781,13 +779,13 @@ style="'.$_POST['css'].'">
     
     <script>
       FB.init({
-        appId  : "'.$_POST['appid'].'",
+        appId  : "'.esc_attr($_POST['appid']).'",
         frictionlessRequests: true
       });
       function sendRequestToRecipients() {
         var user_ids = document.getElementsByName("user_ids")[0].value;
         FB.ui({method: "apprequests",
-          message: "'.$_POST['req_m'].'",
+          message: "'.esc_attr($_POST['req_m']).'",
           to: user_ids
         }, requestCallback);
       }
@@ -803,12 +801,12 @@ style="'.$_POST['css'].'">
 	break;
 	case 'register':
 	if(isset($_POST['reg_type']))
-	$reg_type=$_POST['reg_type'];
+		$reg_type=esc_attr($_POST['reg_type']);
 	else
 	$reg_type='';
 	if($_POST['log_red'])
         {
-	       $log_red=$_POST['log_red'];
+	       $log_red=esc_attr($_POST['log_red']);
          $log_red=str_replace('&','@@@',$log_red);
 	}
 	else
@@ -816,7 +814,7 @@ style="'.$_POST['css'].'">
 	       $log_red='autoLOGREDauto';
 	}
 	if($_POST['reg_red']){
-	$reg_red=$_POST['reg_red'];
+	$reg_red=esc_url($_POST['reg_red']);
         $reg_red=str_replace('&','@@@',$reg_red);
 	}
 	else{
@@ -861,8 +859,8 @@ var web = {
 }
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : "'.$_POST['appid'].'", // App ID
-      channelUrl : "'.$_POST['domain'].'", // Channel File
+      appId      : "'.esc_attr($_POST['appid']).'", // App ID
+      channelUrl : "'.esc_attr($_POST['domain']).'", // Channel File
       status     : true, // check login status
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
@@ -881,7 +879,7 @@ var web = {
 </script>
 <fb:login-button
   id="temp_id"
-  registration-url="get_registration_for_faceebok_page_or_posttask=registration&type='.$reg_type.'&appid='.$_POST['appid'].'&g_red='.$reg_red.'" 
+  registration-url="get_registration_for_faceebok_page_or_posttask=registration&type='.$reg_type.'&appid='.esc_attr($_POST['appid']).'&g_red='.$reg_red.'" 
   
   onlogin="javascript:web.login.login_button_click();"
 >
@@ -935,22 +933,22 @@ class seve_or_update_sp{
 	
 	/// if need modifide information for save or update
 	public function modified_variable($key_for_post,$new_value_post){
-	$this->genereted_conect_array[$key_for_post]=$new_value_post;	
+		$this->genereted_conect_array[$key_for_post]=$new_value_post;	
 	}	
 	/// save parametrs
 	public function save_parametrs(){
-	global $wpdb;
-	if(isset($this->genereted_conect_array['id']))
-	$this->genereted_conect_array['id']=NULL;
-	$save_or_no=$wpdb->insert($wpdb->prefix.$this->table_name,$this->genereted_conect_array);
-	if($save_or_no)
-	{
-		echo '<div id="message" class="updated fade"><p>Successfully Saved</p></div>';
-	}
-	else
-	{
-		echo '<div id="message" class="error"><p>Save Failed</p></div>';
-	}
+		global $wpdb;
+		if(isset($this->genereted_conect_array['id']))
+			$this->genereted_conect_array['id']=NULL;
+		$save_or_no=$wpdb->insert($wpdb->prefix.$this->table_name,$this->genereted_conect_array);
+		if($save_or_no)
+		{
+			echo '<div id="message" class="updated fade"><p>Successfully Saved</p></div>';
+		}
+		else
+		{
+			echo '<div id="message" class="error"><p>Save Failed</p></div>';
+		}
 	}
 	/// update parametrs
 	public function update_parametrs($id){
@@ -988,7 +986,7 @@ function remove_Spider_Facebook($id){
 ////////////////////////////////////////////////////
 function cange_facebook_published( $id ){
   global $wpdb;
-  $published=$wpdb->get_var("SELECT published FROM ".$wpdb->prefix."spiderfacebook_params WHERE `id`=".$id );
+  $published=$wpdb->get_var($wpdb->prepare("SELECT published FROM ".$wpdb->prefix."spiderfacebook_params WHERE `id`= %d",$id) );
   if($published)
    $published=0;
   else
@@ -1008,7 +1006,6 @@ function cange_facebook_published( $id ){
 	}
 	?>
 	<div class="updated"><p><strong><?php _e('Published Changed'); ?></strong></p></div>
-	<?php
-	
+	<?php	
     return true;
 }
