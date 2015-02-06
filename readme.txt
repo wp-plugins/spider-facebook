@@ -156,6 +156,11 @@ If any problem occurs with [Spider Facebook](http://web-dorado.com/products/word
 = 1.0.11 =
 security issue fixed
 
+= 1.0.10 =
+change shortcode
+
+= 1.0.7 =
+bug fixed on wp 3.9 editor
 
 == Spider Facebook Step by step guide Step 1 ==    
 = Installing Spider Facebook =    
