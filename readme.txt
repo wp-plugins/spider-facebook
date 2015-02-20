@@ -553,3 +553,17 @@ Example:
 3.2 Click on the Spider Facebook button .		
 3.3 Select the Facebook plugin you want to insert and click on the Insert button. You can also edit the META tags in the Spider Facebook section at the bottom of the page. Note that these META tags have a higher priority than the ones on the Facebook plugin parameters page.		
 3.4 Alternatively, you can manually insert the Facebook plugin shortcode into the post/page. Simply copy [spider_facebook id="N"] into the page/post. "N" is the ID of the plugin and can be found in the Manage Facebook section of Spider Facebook.		
+
+Step 4:  Creating a Facebook Application ID   
+4.1 Go to the Facebook Developers Apps page, and sign in with your Facebook username and password. If you are new to Facebook Developers, you will see a "Register a Developer Account" button. Follow the steps to create a free developer account on Facebook.     
+4.2 Click the register button. Once you've read the Facebook Platform Policies, click on the "Continue" button. Clicking the "Continue" button implies that you agree to the Facebook Platform Policies.    
+4.3 If your Facebook account is unverified, you may be asked to verify your account (by mobile or credit card number).    
+4.4 You might also need to pass a Captcha security check. Click on the “Submit” button after providing the Captcha code.   
+4.5 After signing in, click on the "Create New App" button.    
+4.6 Specify a name for the application in the "App Name" field. It is recommended to use your site name. Leave the remaining fields blank.
+4.7 You should now be on the Basic (Basic Settings) page for your app, where the App Name you had provided in Step 6 is displayed in the "Display Name" field. Check if the name and the contact email address are correct. Now, proceed to the "App Domains" field.    
+4.8 Type in your domain name in the "App Domains" field (e.g. example.com, without ‘www’ or ‘http://’).     
+4.9 Next, scroll down to the "Select how your app integrates with Facebook" section of the Basic page, and click "Website with Facebook Login." This section will expand to show a "Site URL" field.   
+4.10 Enter your site URL in the "Site URL" field (e.g. http://www.example.com ).   
+4.11 Click on the "Save Changes" button.     
+Final step: Copy your Facebook App ID. To find the App ID, from the navigation menu on the left hand of the page click "Settings" and select "Basic", which will take you to the Basic Settings page. Your Facebook App ID will appear beside the "App ID" field, located on the top of the page. Paste the App ID into App ID field of the Spider Facebook's admin page.      
