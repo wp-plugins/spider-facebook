@@ -134,6 +134,8 @@ After downloading the ZIP file
 2.  Click 'Add New'  
 3.  Choose the 'Upload' option   
 4.  Click **Choose file** (**Browse**) and select the zip file.   
+*For Mac Users*     
+*Go to your Downloads folder and locate the folder with the Spider Facebook. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
 5.  Click **Install Now** button.   
 6.  Once it is complete, activate the plugin.   
 
