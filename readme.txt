@@ -52,7 +52,6 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Possibility to choose the number of comments to be displayed within a page/post   
 * Support for custom styling when creating buttons  
 * Possibility to set the width and length of the comment box for Facebook comments  
-* 5 Font Options for most of the plugins  
 
 Upgrade to [Spider Facebook Pro](http://web-dorado.com/products/wordpress-facebook.html) to add features: 
 
