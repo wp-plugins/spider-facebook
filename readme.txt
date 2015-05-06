@@ -1,6 +1,6 @@
 === Wordpress Facebook ===
 Contributors: webdorado
-Donate link: http://web-dorado.com/products/wordpress-facebook.html
+Donate link: https://web-dorado.com/products/wordpress-facebook.html
 Tags: Facebook, facebook platform, friends, Like, like button, comments, facebook like, open graph, page, plugin, posts, sidebar, social, Social Plugins, Facebook Widget,wordpress like,facebook share, Facebook Page,facebook connect,Facebook Login, facebook plugin, facebook badge, facebook comments, facebook like box, Facebook Open Graph, facebook recommend, facebook button, facebook send, facebook like button, facebook share button, facebook meta, Facebook send button, facebook wall, facebook group,facebook meta tag, social sidebar, post to facebook,  facebook sidebar, Facebook fan page, like box, login with facebook, facebook promotion, facebook integration, Facebook like widget, facebook style, fb, fb like, facebook comments import, social share, social bookmark, social bookmarking, sharebar, share buttons, twitter, twitter share,twitter share button, google bookmarks, google plus one, google +1, google plus, google widget, google plus one button,Google share, google plus share,linkedin, linkedin share, Linked In, social media auto publish
 Requires at least: 3.4
 Tested up to: 4.2
@@ -12,10 +12,10 @@ Spider Facebook is a WordPress integration tool for Facebook.It includes all the
 == Description ==
 Connect your WordPress website with Facebook by help of this Free plugin.   
   
-[Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html)  
+[Spider Facebook](https://web-dorado.com/products/wordpress-facebook.html)  
 [Demo](http://wpdemo.web-dorado.com/spider-facebook/)  
 [Demo Admin](http://wpdemo.web-dorado.com/wp-admin/admin.php?page=Spider_Facebook_manage)  
-[User Manual](http://web-dorado.com/wordpress-facebook-guide-step-1.html)  
+[User Manual](https://web-dorado.com/wordpress-facebook-guide-step-1.html)  
  
 Spider Facebook is a well-equipped tool to integrate your website with Facebook. The product package contains a large number of widgets and plugins to make your website more social. Using it you will be able to add not only Like/Share and Registration buttons, but also Facepile, Facebook commenting box and etc.
 This WordPress plugin comes with Open Graph Integration, so that the shared pages/posts can be fully customized, including title, image and other content. Spider Facebook is user-friendly and comes with a detailed documentation for an easier installation and use.   
@@ -25,7 +25,7 @@ Using Facebook comments you will be able to regulate your comments and avoid spa
 Facebook Activity Feed will allow displaying the activity of the specific page, e.g. comments and likes in the page.   
 Facebook Facepile images are displayed only when the user has already liked the page. Otherwise it will display only the number of likes for the page.
 
-Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.html):  
+Features of Spider [Facebook](https://web-dorado.com/products/wordpress-facebook.html):  
 
 
 * Facebook Like Button with a possibility of sharing the stories afterwards  
@@ -54,7 +54,7 @@ Features of Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.
 * Support for custom styling when creating buttons  
 * Possibility to set the width and length of the comment box 
 
-Upgrade to [Spider Facebook Pro](http://web-dorado.com/products/wordpress-facebook.html) to add features: 
+Upgrade to [Spider Facebook Pro](https://web-dorado.com/products/wordpress-facebook.html) to add features: 
 
 * LinkedIn Share, Tweet, Google Plus recommendation and Facebook like   
 * Facebook Register   
@@ -65,7 +65,7 @@ In addition to the social integration widgets, Facebook plugin allows having reg
 Multiple registration possibilities (auto registration, username and password, as well as username/password and Captcha). (commercial version)
 
 ###IMPORTANT:    
-If you think you found a bug in Spider Facebook or have any problem/question concerning the plugin, please check out [Support Forum](http://web-dorado.com/forum/spider-facebook-wordpress.html) in our website. If you do not find a solution here, do not hesitate to contact us at [info@web-dorado.com](mailto:info@web-dorado.com).
+If you think you found a bug in Spider Facebook or have any problem/question concerning the plugin, please check out [Support Forum](https://web-dorado.com/forum/spider-facebook-wordpress.html) in our website. If you do not find a solution here, do not hesitate to contact us at [info@web-dorado.com](mailto:info@web-dorado.com).
 
  
 ### Supported languages
@@ -122,7 +122,7 @@ Vietnamese (vi)
 
 == Installation ==
 
-####Thank you for your interest in Spider [Facebook](http://web-dorado.com/products/wordpress-facebook.html).
+####Thank you for your interest in Spider [Facebook](https://web-dorado.com/products/wordpress-facebook.html).
 
 Minimum requirements:  
 
@@ -141,7 +141,7 @@ After downloading the ZIP file
 6.  Once it is complete, activate the plugin.   
 
 Once the plugin is activated, you'll notice a menu on the left called Spider Facebook.  
-If any problem occurs with [Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.  
+If any problem occurs with [Spider Facebook](https://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.  
 
 == Screenshots ==
 1.  Spider Facebook - Social networks	 
@@ -185,7 +185,7 @@ Initial version
 4.	Click the "Install Now" button.		
 5.	Click the "Activate Plugin" to activate the plugin.		 
 If the installation is successful, you will see a notification message.  
-If any problem occurs with [Spider Facebook](http://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.
+If any problem occurs with [Spider Facebook](https://web-dorado.com/products/wordpress-facebook.html), please contact us info@web-dorado.com.
 		
 1.3 Updating the Spider Facebook.  
 
