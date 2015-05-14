@@ -52,7 +52,6 @@ Features of Spider [Facebook](https://web-dorado.com/products/wordpress-facebook
 * Possibility to change the language of the button label when creating the button   
 * Possibility to choose the number of comments to be displayed within a page/post   
 * Support for custom styling when creating buttons  
-* Possibility to set the width and length of the comment box 
 
 Upgrade to [Spider Facebook Pro](https://web-dorado.com/products/wordpress-facebook.html) to add features: 
 
