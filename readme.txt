@@ -8,7 +8,7 @@ Stable tag: 1.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Spider Facebook is a WordPress integration tool for Facebook.It includes all the available Facebook social plugins and widgets to be added to your website. 
+Spider Facebook is a WordPress integration tool for Facebook. It includes all the available Facebook social plugins and widgets to be added to your website. 
 == Description ==
 Connect your WordPress website with Facebook by help of this Free plugin.   
   
@@ -50,8 +50,7 @@ Features of Spider [Facebook](https://web-dorado.com/products/wordpress-facebook
 * App ID required for all plugins and buttons
 * Layout styling possibilities with each button  
 * Possibility to change the language of the button label when creating the button   
-* Possibility to choose the number of comments to be displayed within a page/post   
-* Support for custom styling when creating buttons  
+* Possibility to choose the number of comments to be displayed within a page/post    
 
 Upgrade to [Spider Facebook Pro](https://web-dorado.com/products/wordpress-facebook.html) to add features: 
 
